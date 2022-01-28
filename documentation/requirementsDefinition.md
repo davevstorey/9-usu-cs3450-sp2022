@@ -33,7 +33,7 @@ want to do it themsel.
 
 ## Functional Requirements
 
-1.User Authentication and Access\
+1. User Authentication and Access\
 &emsp;1.1 User must be able to navigate to log in page\
 &emsp;1.2 User must be able to log in using username and password\
 &emsp;&emsp;1.2.1 User must be notified if login information is correct/incorrect\
@@ -45,7 +45,7 @@ want to do it themsel.
 &emsp;1.4 Users are authorized to have a mix any of the following features and rights\
 &emsp;&emsp;1.4.1 All users should have access to both customer profile features and worker profile features. Given to them in two separate windows.\
 &emsp;&emsp;1.4.2 Users with owner status will have access to all customer, worker, and owner profile features.\
-2.User Profile Features\
+2. User Profile Features\
 &emsp;2.1 Users will be able to have any combination of the following types: Worker, Customer, Owner\
 &emsp;2.2 User will be able to edit their account information\
 &emsp;&emsp;2.2.1 User will be able to add a picture to their profile\
@@ -61,7 +61,7 @@ want to do it themsel.
 &emsp;&emsp;2.4.3 User will be able to load money on their account\
 &emsp;&emsp;2.4.4 User will be able to delete their account\
 &emsp;&emsp;2.4.5 User’s job posts will be primarily shown to workers in their area\
-3.Owner Profile Features\
+3. Owner Profile Features\
 &emsp;3.1 Owner will be able to change profile types\
 &emsp;3.2 Owner will be able to create/delete accounts\
 &emsp;3.3 Owner will be able to edit transactions\
