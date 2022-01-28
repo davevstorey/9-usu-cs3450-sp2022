@@ -27,7 +27,7 @@ Event Flow:
 
 # Worker Signs up for a job.
 
-![Diagram 2](/diagrams/WorkerGetsJob.drawio.png)
+![Diagram 2](diagrams/WorkerGetsJob.drawio.png)
 
 Participating actor/s: Worker
 
@@ -53,7 +53,7 @@ Event Flow:
 
 # Customer reviews worker to accept/decline job
 
-![Diagram 3](/diagrams/CustomerReviewsWorkerAcceptsDeclines.png)
+![Diagram 3](diagrams/CustomerReviewsWorkerAcceptsDeclines.png)
 
 Participating actor/s: Worker
 
@@ -81,7 +81,7 @@ Event Flow:
 
 # Worker submits job completion.
 
-![Diagram 4](/diagrams/WorkerSubmitsJobCompletion.png)
+![Diagram 4](diagrams/WorkerSubmitsJobCompletion.png)
 
 Participating actor/s: Worker
 
@@ -103,7 +103,7 @@ Event Flow:
 
 # Owner creates new available jobs or deletes old ones.
 
-![Diagram 5](/diagrams/OwnerCreatesJob.png)
+![Diagram 5](diagrams/OwnerCreatesJob.png)
 
 Participating Actor/s: Owner
 
@@ -131,7 +131,7 @@ Event Flow:
 
 # Owner modifies accounts
 
-![Diagram 6](/diagrams/OwnerModifiesAccounts.png)
+![Diagram 6](diagrams/OwnerModifiesAccounts.png)
 
 Participating Actor/s: Owner
 
@@ -151,7 +151,7 @@ Event Flow:
 
 # User creates an account
 
-![Diagram 7](/diagrams/UserCreatesAccount.drawio.png)
+![Diagram 7](diagrams/UserCreatesAccount.drawio.png)
 
 Participating Actor/s: User
 
@@ -177,7 +177,7 @@ Event Flow:
 
 # User modifies account
 
-![Diagram 8](/diagrams/UserUpdates.drawio.png)
+![Diagram 8](diagrams/UserUpdates.drawio.png)
 
 Participating actor/s: User
 
