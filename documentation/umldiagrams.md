@@ -1,6 +1,6 @@
-## UML Diagrams
+# UML Diagrams
 
-# 1 \- Customer posts a job
+## 1 \- Customer posts a job
 
 ![Diagram 1](diagrams/CustomerPostsAJob.png)
 
@@ -25,7 +25,7 @@ Event Flow:
 6. Customer receives confirmation of posting
 7. Customers dashboard is updated to display the job
 
-# 2 \- Worker Signs up for a job.
+## 2 \- Worker Signs up for a job.
 
 ![Diagram 2](diagrams/WorkerGetsJob.drawio.png)
 
@@ -51,7 +51,7 @@ Event Flow:
 7. A notification is sent to the customer, confirming the worker
 8. The workers Dashboard is updated to display the job
 
-# 3 \- Customer reviews worker to accept/decline job
+## 3 \- Customer reviews worker to accept/decline job
 
 ![Diagram 3](diagrams/CustomerReviewsWorkerAcceptsDeclines.png)
 
@@ -79,7 +79,7 @@ Event Flow:
     3. Both dashboards are updated to reflect job acceptance
     4. The job is removed from the job listing
 
-# 4 \- Worker submits job completion.
+## 4 \- Worker submits job completion.
 
 ![Diagram 4](diagrams/WorkerSubmitsJobCompletion.png)
 
@@ -101,7 +101,7 @@ Event Flow:
 4. The customer compensates the worker for the job
 5. The customer is asked to review the worker
 
-# 5 \- Owner creates new available jobs or deletes old ones.
+## 5 \- Owner creates new available jobs or deletes old ones.
 
 ![Diagram 5](diagrams/OwnerCreatesJob.png)
 
@@ -129,7 +129,7 @@ Event Flow:
     1. The owner clicks on one to delete
     2. The updates reflect job options minus deleted choices
 
-# 6 \- Owner modifies accounts
+## 6 \- Owner modifies accounts
 
 ![Diagram 6](diagrams/OwnerModifiesAccounts.png)
 
@@ -149,7 +149,7 @@ Event Flow:
 2. Create, delete, edit type, and/or modify balance of an account
 3. Submit Modifications
 
-# 7 \- User creates an account
+## 7 \- User creates an account
 
 ![Diagram 7](diagrams/UserCreatesAccount.drawio.png)
 
@@ -175,7 +175,7 @@ Event Flow:
 7. If not accepted:
     1. The account is nullified
 
-# 8 \- User modifies account
+## 8 \- User modifies account
 
 ![Diagram 8](diagrams/UserUpdates.drawio.png)
 
