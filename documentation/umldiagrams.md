@@ -2,7 +2,7 @@
 
 # Customer posts a job
 
-![Diagram 1](/diagrams/CustomerPostsAJob.png)
+![Diagram 1](diagrams/CustomerPostsAJob.png)
 
 Participating actor/s: Customer
 
