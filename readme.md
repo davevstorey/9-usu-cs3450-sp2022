@@ -4,7 +4,7 @@ Yardwrk creates an an easy to use interface where cache valley residents can pos
 
 ## Workspace Layout
 
-Documentation for this project will be stored in the *documentation* folder. This will contain the project plan, use case diagrams, and others as the project progresses.
+Documentation for this project will be stored in the *docs* folder. This will contain the project plan, use case diagrams, and others as the project progresses.
 
 The project itself will be kept in the *app* folder.
 
