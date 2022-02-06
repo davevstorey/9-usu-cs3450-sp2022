@@ -2,7 +2,7 @@
 
 ## 1 \- Customer posts a job
 
-![Diagram 1](diagrams/CustomerPostsAJob.png)
+![Diagram 1](useCaseDiagramsSrc/CustomerPostsAJob.png)
 
 Participating actor/s: Customer
 
@@ -27,7 +27,7 @@ Event Flow:
 
 ## 2 \- Worker Signs up for a job.
 
-![Diagram 2](diagrams/WorkerGetsJob.drawio.png)
+![Diagram 2](useCaseDiagramsSrc/WorkerGetsJob.drawio.png)
 
 Participating actor/s: Worker
 
@@ -53,7 +53,7 @@ Event Flow:
 
 ## 3 \- Customer reviews worker to accept/decline job
 
-![Diagram 3](diagrams/CustomerReviewsWorkerAcceptsDeclines.png)
+![Diagram 3](useCaseDiagramsSrc/CustomerReviewsWorkerAcceptsDeclines.png)
 
 Participating actor/s: Worker
 
@@ -81,7 +81,7 @@ Event Flow:
 
 ## 4 \- Worker submits job completion.
 
-![Diagram 4](diagrams/WorkerSubmitsJobCompletion.png)
+![Diagram 4](useCaseDiagramsSrc/WorkerSubmitsJobCompletion.png)
 
 Participating actor/s: Worker
 
@@ -103,7 +103,7 @@ Event Flow:
 
 ## 5 \- Owner creates new available jobs or deletes old ones.
 
-![Diagram 5](diagrams/OwnerCreatesJob.png)
+![Diagram 5](useCaseDiagramsSrc/OwnerCreatesJob.png)
 
 Participating Actor/s: Owner
 
@@ -131,7 +131,7 @@ Event Flow:
 
 ## 6 \- Owner modifies accounts
 
-![Diagram 6](diagrams/OwnerModifiesAccounts.png)
+![Diagram 6](useCaseDiagramsSrc/OwnerModifiesAccounts.png)
 
 Participating Actor/s: Owner
 
@@ -151,7 +151,7 @@ Event Flow:
 
 ## 7 \- User creates an account
 
-![Diagram 7](diagrams/UserCreatesAccount.drawio.png)
+![Diagram 7](useCaseDiagramsSrc/UserCreatesAccount.drawio.png)
 
 Participating Actor/s: User
 
@@ -177,7 +177,7 @@ Event Flow:
 
 ## 8 \- User modifies account
 
-![Diagram 8](diagrams/UserUpdates.drawio.png)
+![Diagram 8](useCaseDiagramsSrc/UserUpdates.drawio.png)
 
 Participating actor/s: User
 
