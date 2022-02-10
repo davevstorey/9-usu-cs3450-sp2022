@@ -23,7 +23,7 @@ if they had a terrible experience with the worker.
 
 By connecting customers in need of lawn care or other similar tasks with workers we hope to provide
 working opportunities to young individuals across Cache valley, while also clearing yards for those who don’t
-want to do it themsel.
+want to do it themself.
 
 ## Users and their Goals
 
@@ -81,7 +81,7 @@ want to do it themsel.
                 * Username
                 * Email
                 * Phone Number
-                * Password (handle securely somehow!)
+                * Password (handle securely!)
                 * Address
                 * Zip Code
                 * Privileges (owner, worker, customer)
