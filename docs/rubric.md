@@ -24,7 +24,7 @@
 - [x] Activity diagram that document key execution flows.
 - Justification: Found in docs/activityDiagramsSrc/.
 
-- [ ] High-Fidelity prototype.
+- [x] High-Fidelity prototype.
 - Justification:
 
 - [ ] Low-Fidelity prototype.
