@@ -1,4 +1,4 @@
-# UML Diagrams
+# Use Case Diagrams
 
 ## 1 \- Customer posts a job
 
