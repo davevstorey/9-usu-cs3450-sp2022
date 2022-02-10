@@ -1,28 +1,28 @@
 ## Milestone 2 Rubric and Justifications
 
-- [ ] Product Backlog in the GitHub Repository Issues has 10+ items.
-- Justification:
+- [x] Product Backlog in the GitHub Repository Issues has 10+ items.
+- Justification: Go to projects next to Actions and Wiki. Then click projects from what is pulled up.
 
-- [ ] Product Backlog in the GitHub Repository Issues have items small enough to be completed  by 1 person in 1-2 workdays.
-- Justification:
+- [x] Product Backlog in the GitHub Repository Issues have items small enough to be completed  by 1 person in 1-2 workdays.
+- Justification: Go to projects next to Actions and Wiki. Then click projects from what is pulled up. All products were done by 1 person generally. Maybe 2 if necessary. All in 1 - 2 as well.
 
-- [ ] README.md is revised from Phase 1 if necessary. This includes organization and name scheme for the workspace, version control procedures, tool stack description and setup, build instructions, unit testing instructions, and system testing instructions.
-- Justification:
+- [x] README.md is revised from Phase 1 if necessary. This includes organization and name scheme for the workspace, version control procedures, tool stack description and setup, build instructions, unit testing instructions, and system testing instructions.
+- Justification: No revision necessary. Find on github home screen.
 
-- [ ] Project Plan is revised from Phase 1 if necessary. This includes a summary of the project being built, a description of team organization, policies, procedures, tools for communication, and risk analysis.
-- Justification:
+- [x] Project Plan is revised from Phase 1 if necessary. This includes a summary of the project being built, a description of team organization, policies, procedures, tools for communication, and risk analysis.
+- Justification: No change needed. Find in docs.
 
-- [ ] Requirements Definition is revised from Phase 1 if necessary. This includes an introduction and context of the project, users and their goals, functional requirements, non-functional requirements, future features, and a glossary.
-- Justification:
+- [x] Requirements Definition is revised from Phase 1 if necessary. This includes an introduction and context of the project, users and their goals, functional requirements, non-functional requirements, future features, and a glossary.
+- Justification: Small revision made find in docs folder
 
-- [ ] Use case diagrams that document key execution flows.
-- Justification:
+- [x] Use case diagrams that document key execution flows.
+- Justification: Found in docs/useCaseDiagrams.md to view all of them otherwise docs/useCaseDiagramsSrc/ to view all of them individually.
 
 - [ ] Class Diagrams that document the classes of objects in the system and their relationships.
 - Justification:
 
-- [ ] Activity diagrams that document key execution flows.
-- Justification:
+- [x] Activity diagram that document key execution flows.
+- Justification: Found in docs/activityDiagramsSrc/.
 
 - [ ] High-Fidelity prototype.
 - Justification:
