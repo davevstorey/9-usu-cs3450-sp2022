@@ -1,0 +1,21 @@
+{% extends "authentication/base.html" %}
+
+{% block title %} Profile {% endblock %}
+
+{% block content %}
+    <h2>Profile Information</h2>
+
+    <div class="justify-content-center">
+        <div class="">
+            <p class="h4">Username : {{ user.username }}</p>
+
+            <p class="h4">Email : {{ user.email }}</p>
+
+            <p class="h4">First Name : {{ user.first_name }}</p>
+
+            <p class="h4">Last Name : {{ user.last_name }}</p>
+        </div>
+
+        <p>Edit profile <a href="/accounts/profile/edit">here</a></p>
+    </div>
+{% endblock %}
