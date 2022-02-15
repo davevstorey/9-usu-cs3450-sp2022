@@ -18,18 +18,21 @@
 - [x] Use case diagrams that document key execution flows.
 - Justification: Found in docs/useCaseDiagrams.md to view all of them otherwise docs/useCaseDiagramsSrc/ to view all of them individually.
 
-- [ ] Class Diagrams that document the classes of objects in the system and their relationships.
-- Justification:
+- [x] Class Diagrams that document the classes of objects in the system and their relationships.
+- Justification: All of them are found in docs/umlClassDiagrams.
 
 - [x] Activity diagram that document key execution flows.
 - Justification: Found in docs/activityDiagramsSrc/.
 
 - [x] High-Fidelity prototype.
-- Justification:
+- Justification: A login system made through pycharm. Follow readme.md to download and use. Found in docs/prototypes/djangoProject/.
 
-- [ ] Low-Fidelity prototype.
-- Justification:
+- [x] Low-Fidelity prototype.
+- Justification: Png files found in docs/prototypes/lowfidelity/ contain all low fidelity prototype information.
 
-- [ ] History on the scrum board showing who is working on which items and when the items are completed.
-- Justification:
+- [x] History on the scrum board showing who is working on which items and when the items are completed.
+- Justification: To find our scrum board press on Projects at the top of the github. Then press Projects on the left side of the screen that has a 1 next to it. Then press yardwrk. We left some stuff in the backlog that may be done at a later date if necessary. The assignment ask for issues to be in the backlog, which they were at the start of the assignmnet, but have now been moved to the done section.
+
+- [x] Burndown graph and Story Points.
+- Justification: We were unaware of the scrum board till after when it would be helpful/used. So we made a excel file retrospectively. Find in the Sprint2_Burndown_storyPoints.png file inside of docs/.
 
