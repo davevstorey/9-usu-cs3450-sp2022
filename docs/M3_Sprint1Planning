@@ -3,12 +3,13 @@ Milestone 3 Sprint 1 Plan:
 Encapsulation of Database Features that is compatible with the way we store users and data. 
   - "Lego man, 2022"
   
-Jake - User Model
+Jake - User Model (2 hours)
   Expected :
-Quinn - Reviews Model
-Ian - Job Model
-Dave - Worker Model, Customer Model
+Quinn - Reviews Model (1 hour)
+Ian - Job Model (1 hour)
+Dave - Worker Model, Customer Model (2 hours)
  
 We aren't using lego man's graphic thing
 
+Everyone who needs too - Review how Django works. (3 hours)
 Dave - Does intro Django project to know what is going on.
