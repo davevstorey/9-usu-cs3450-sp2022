@@ -9,6 +9,8 @@ class Review(models.Model):
     revieweeUserType = models.CharField(max_length=8)
     reviewerName_text = models.CharField(max_length = 40)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    worker = models.ForeignKey(Worker, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.review_text
