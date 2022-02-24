@@ -1,6 +1,20 @@
 import datetime
 from django.db import models
 
+class Worker(models.Model):
+	user = models.OneToOneField(
+		User,
+		on_delete=models.CASCADE,
+		primary_key=True,
+	)
+
+class Customer(models.Model):
+	user = models.OneToOneField(
+		User,
+		on_delete=models.CASCADE,
+		primary_key=True,
+	)
+
 class Review(models.Model):
     published_date = models.DateTimeField('date posted')
     review_text = models.CharField(max_length=400)
