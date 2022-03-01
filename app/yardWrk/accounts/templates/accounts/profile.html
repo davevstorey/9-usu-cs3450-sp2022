@@ -1,20 +1,27 @@
-{% extends "authentication/base.html" %}
+{% extends "accounts/base.html" %}
 
 {% block title %} Profile {% endblock %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
-    <h2>Profile Information</h2>
+    <h2>{{ user.first_name }} {{ user.last_name }}'s Profile</h2>
 
     <div class="justify-content-center">
-        <div class="">
-            <p class="h4">Username : {{ user.username }}</p>
-
-            <p class="h4">Email : {{ user.email }}</p>
-
-            <p class="h4">First Name : {{ user.first_name }}</p>
-
-            <p class="h4">Last Name : {{ user.last_name }}</p>
-        </div>
+        <form>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="id-username" value="{{ user.username }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="id-email" value="{{ user.email }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="phone" class="form-control" id="id-phone" value="{{ user.phone }}" readonly>
+            </div>
+        </form>
 
         <p>Edit profile <a href="/accounts/profile/edit">here</a></p>
     </div>
