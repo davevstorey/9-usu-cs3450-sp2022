@@ -1,17 +1,17 @@
 import datetime
 from django.db import models
-from django.apps import accounts
+from accounts.models import CustomUser
 
 class Worker(models.Model):
 	user = models.OneToOneField(
-		accounts.CustomUser,
+		CustomUser,
 		on_delete=models.CASCADE,
 		primary_key=True,
 	)
 
 class Customer(models.Model):
 	user = models.OneToOneField(
-		accounts.CustomUser,
+		CustomUser,
 		on_delete=models.CASCADE,
 		primary_key=True,
 	)
@@ -23,7 +23,7 @@ class Review(models.Model):
     redList_bool = models.BooleanField()
     revieweeUserType = models.CharField(max_length=8)
     reviewerName_text = models.CharField(max_length = 40)
-    user = models.ForeignKey(accounts.CustomUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     worker = models.ForeignKey(Worker, on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
