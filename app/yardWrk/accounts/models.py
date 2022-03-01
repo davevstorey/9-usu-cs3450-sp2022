@@ -15,3 +15,6 @@ class CustomUser(AbstractUser):
     # form of wallet/balance (Integer Representation)
     # balance = models.IntegerField()
 
+    def __str__(self):
+        return self.username
+
