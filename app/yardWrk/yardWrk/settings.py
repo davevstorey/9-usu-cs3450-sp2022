@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
-    'phone_field',
+    'phonenumber_field',
     'accounts.apps.AccountsConfig',
 ]
 
@@ -72,7 +72,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'yardWrk.wsgi.application'
 
-AUTH_USER_MODEL = 'authentication.CustomUser'
+AUTH_USER_MODEL = 'accounts.CustomUser'
 
 
 # Database

@@ -8,17 +8,19 @@ from .forms import RegisterForm, EditProfileForm
 # Create your views here.
 
 def home(request):
-    return render(request, 'authentication/home.html', {})
+    return redirect('/accounts/login')
 
 def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('/accounts/login')
+            return redirect('/accounts/login')
+        else: 
+            print(form.errors)
     else:
         form = RegisterForm()
-    return render(request, 'authentication/register.html', { 'form': form })
+    return render(request, 'accounts/register.html', { 'form': form })
 
 def login_view(request):
     if request.method == 'POST':
@@ -27,13 +29,15 @@ def login_view(request):
             user = form.get_user()
             login(request, user)
             return redirect('/accounts/profile')
+        else:
+            print(form.errors)
     else:
         form = AuthenticationForm()
-    return render(request, 'authentication/login.html', { 'form': form })
+    return render(request, 'accounts/login.html', { 'form': form })
 
 @login_required(login_url='/accounts/login')
 def profile(request):
-    return render(request, 'authentication/profile.html', {})
+    return render(request, 'accounts/profile.html')
 
 @login_required(login_url='/accounts/login')
 def edit_profile(request):
@@ -44,7 +48,7 @@ def edit_profile(request):
             return redirect('/accounts/profile')
     else:
         form = EditProfileForm(instance=request.user)
-    return render(request, 'authentication/edit-profile.html', { 'form': form })
+    return render(request, 'accounts/edit-profile.html', { 'form': form })
 
 def logout_view(request):
     logout(request)
