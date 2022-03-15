@@ -3,7 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-from .forms import RegisterForm, EditProfileForm
+from .forms import RegisterForm, EditProfileForm, EditAddressForm
 
 # Create your views here.
 
@@ -50,7 +50,18 @@ def edit_profile(request):
         form = EditProfileForm(instance=request.user)
     return render(request, 'accounts/edit-profile.html', { 'form': form })
 
+@login_required(login_url='/accounts/login')
+def edit_address(request):
+    if request.method == 'POST':
+        form = EditAddressForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('/accounts/profile')
+    else:
+        form = EditAddressForm(instance=request.user)
+    return render(request, 'accounts/edit-address.html', { 'form': form })
+
 def logout_view(request):
     logout(request)
-    return redirect('/accounts/home')
+    return redirect('/accounts/login')
 
