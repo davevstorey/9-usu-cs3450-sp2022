@@ -32,13 +32,13 @@ class EditProfileForm(forms.ModelForm):
             "phone",
         ]
 
-class AddressForm(forms.ModelForm):
+class EditAddressForm(forms.ModelForm):
 
     class Meta:
         model = CustomUser
         fields = [
             "address",
             "city",
-            "state",
-            "zip_code"
+            "zip_code",
+            "state"
         ]
