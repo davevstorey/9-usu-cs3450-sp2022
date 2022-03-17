@@ -18,6 +18,9 @@ class RegisterForm(UserCreationForm):
             "last_name",
             "email",
             "phone",
+            "city",
+            "state",
+            "address",
             "password1",
             "password2"
         ]
@@ -30,6 +33,8 @@ class EditProfileForm(forms.ModelForm):
             "username",
             "email",
             "phone",
+            "first_name",
+            "last_name"
         ]
 
 class EditAddressForm(forms.ModelForm):
