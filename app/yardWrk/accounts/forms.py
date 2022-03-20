@@ -20,6 +20,7 @@ class RegisterForm(UserCreationForm):
             "phone",
             "city",
             "state",
+            "zip_code",
             "address",
             "password1",
             "password2"
