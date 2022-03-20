@@ -16,3 +16,12 @@ def CustomerDashboard(request):
     }
 
     return render(request, 'yardSite/customerDashboard.html', context)
+
+def OwnedJobDetails(request, job_id):
+    requested_job = Job.objects.filter(id=job_id)
+
+    context = {
+        'job': requested_job[0],
+    }
+
+    return render(request, 'yardSite/ownedJobDetails.html', context)
