@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import *
+from .forms import JobPostForm
 
 # Responsible for creating the view a user sees when navigating to their customer page.
 def CustomerDashboard(request):
@@ -25,3 +26,15 @@ def OwnedJobDetails(request, job_id):
     }
 
     return render(request, 'yardSite/ownedJobDetails.html', context)
+
+def create_job_post(request):
+    if request.method == 'POST':
+        form = JobPostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/customer')
+        else: 
+            print(form.errors)
+    else:
+        form = JobPostForm()
+    return render(request, 'yardSite/create-job-post.html', { 'form': form })
