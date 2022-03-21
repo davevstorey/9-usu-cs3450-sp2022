@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <title>Customer Dashboard</title>
+    </head>
+
+    <main>
+        <div>
+            <header>
+                <h2>Pending Jobs</h2>
+            </header>
+            {% if pending_jobs %}
+                {% for job in pending_jobs %}
+                    <div>
+                        <li>{{job.name}}</li>
+                        <ul>
+                            <li>Description: {{job.description}}</li>
+                            <li>Deadline: {{job.date_to_be_finished_by}}</li>
+                            <li><a href="{% url 'ownedJobDetails' job.id %}">Click for more details...</a></li>
+                        </ul>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>You have no pending jobs.</p>
+            {% endif %}
+        </div>
+
+        <div>
+            <header>
+                <h2>Progressing Jobs</h2>
+            </header>
+            {% if progressing_jobs %}
+                {% for job in progressing_jobs %}
+                <div>
+                    <li>{{job.name}}</li>
+                    <ul>
+                        <li>Description: {{job.description}}</li>
+                        <li>Deadline: {{job.date_to_be_finished_by}}</li>
+                        <li><a href="{% url 'ownedJobDetails' job.id %}">Click for more details...</a></li>
+                    </ul>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>You have no progressing jobs.</p>
+            {% endif %}
+        </div>
+
+        <div>
+            <header>
+                <h2>Completed Jobs</h2>
+            </header>
+            {% if completed_jobs %}
+                {% for job in completed_jobs %}
+                <div>
+                    <li>{{job.name}}</li>
+                    <ul>
+                        <li>Description: {{job.description}}</li>
+                        <li>Deadline: {{job.date_to_be_finished_by}}</li>
+                        <li><a href="{% url 'ownedJobDetails' job.id %}">Click for more details...</a></li>
+                    </ul>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>You have no completed jobs.</p>
+            {% endif %}
+        </div>
+    </main>
+</html>
