@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.apps import apps
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -14,7 +15,13 @@ def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
-            form.save()
+            instance = form.save()
+            customer_model = apps.get_model('yardSite.Customer')
+            worker_model = apps.get_model('yardSite.Worker')
+            customer = customer_model(user=instance)
+            customer.save()
+            worker = worker_model(user=instance)
+            worker.save()
             return redirect('/accounts/login')
         else: 
             print(form.errors)
