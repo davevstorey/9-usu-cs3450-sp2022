@@ -10,5 +10,7 @@
         <li>Assigned Worker: {{ job.worker.user }}</li>
         <li>Expected Completion Date: {{ job.date_to_be_finished_by }}</li>
     </ul>
-    <button>Edit</button>
+    {% if job.available %}
+        <a href="{% url 'editJob' job.id %}">Edit</a>
+    {% endif %}
 </div>
