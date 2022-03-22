@@ -8,7 +8,6 @@ class JobPostForm(forms.ModelForm):
     class Meta:
         model = Job
         fields = [
-            "name",
             "job_type",
             "description",
             "cash_reward",
