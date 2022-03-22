@@ -51,7 +51,11 @@ def create_job_post(request):
     if request.method == 'POST':
         form = JobPostForm(request.POST)
         if form.is_valid():
-            form.save()
+            instance = form.save(commit=False)
+            instance.name = request.user.get_full_name()
+            instance.zip_code = request.user.zip_code
+            instance.customer = request.user.customer
+            instance.save()
             return redirect('/customer')
         else: 
             print(form.errors)

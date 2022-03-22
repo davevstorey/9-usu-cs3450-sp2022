@@ -68,7 +68,7 @@ class Job(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
     # Many to One Relation -- One Worker can be assigned many jobs
-    worker = models.ForeignKey(Worker, on_delete=models.CASCADE)
+    worker = models.ForeignKey(Worker, null=True, on_delete=models.CASCADE)
 
     # Boolean field
     available = models.BooleanField(default=True)
