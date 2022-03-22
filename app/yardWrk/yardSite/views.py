@@ -25,6 +25,19 @@ def CustomerDashboard(request):
 
     return render(request, 'yardSite/customerDashboard.html', context)
 
+def WorkerDashboard(request):
+    w_user = request.user
+    w_name = w_user.get_full_name()
+    worker = w_user.worker
+
+    #job_list = Job.objects.all()
+    job_list = Job.objects.filter(worker=worker)
+    context = {
+        'name': w_name,
+        'jobs': job_list,
+    }
+    return render(request, 'yardSite/workerDashboard.html', context)
+
 def OwnedJobDetails(request, job_id):
     requested_job = Job.objects.filter(id=job_id)[0]
 

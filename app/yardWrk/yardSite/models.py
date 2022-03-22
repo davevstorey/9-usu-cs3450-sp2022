@@ -75,7 +75,7 @@ class Job(models.Model):
 
     completed = models.BooleanField(default=False)
 
-    date_to_be_finished_by = models.DateField()
+    date_to_be_finished_by = models.DateField(blank=True, null=True)
 
     zip_code = models.IntegerField()
 
