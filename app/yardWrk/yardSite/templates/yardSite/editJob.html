@@ -1,0 +1,13 @@
+{% block title %} Edit Job Post {% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h2>Edit</h2>
+
+    <form method="post" class="form-group">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-success">Update</button>
+    </form>
+{%endblock%}
