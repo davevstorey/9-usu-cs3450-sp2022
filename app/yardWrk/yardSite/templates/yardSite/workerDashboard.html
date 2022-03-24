@@ -9,10 +9,23 @@
         <h1>Worker Profile for {{ name }}</h1>
 
         <div>
-            <h2>Jobs</h2>
+            <h2>Assigned Jobs</h2>
             {% if jobs %}
                 <ul>
                     {% for job in jobs %}
+                        <li>{{ job }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No Jobs Assigned</p>
+            {% endif %}
+        </div>
+
+        <div>
+            <h2>Available Jobs</h2>
+            {% if available %}
+                <ul>
+                    {% for job in available %}
                         <li>{{ job }}</li>
                     {% endfor %}
                 </ul>
