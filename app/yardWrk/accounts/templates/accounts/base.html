@@ -6,6 +6,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
     <style type="text/css">
+        * {
+            color: #111;
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        html {
+            overflow: hidden;
+            height: 100%;
+        }
+
+        body {
+            overflow: auto;
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            width: 100%;
+            overflow: auto;
+        }
+
+        .topnav {
+            background-color: #023020;
+            color: #f1f1f1;
+            display: flex;
+            margin-left: 100px;
+            margin-bottom: 50px;
+            justify-content: space-around;
+            align-items: center;
+            min-height: 8vh;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .logo {
+            text-transform: lowercase;
+            letter-spacing: 5px;
+            font-size: 32px;
+        }
+        .logo h1 {
+            color: #f1f1f1;
+        }
+
+        .topnav-links {
+            display: flex;
+            justify-content: space-around;
+            width: 30%;
+        }
+
+        .topnav-links li {
+            list-style: none;
+        }
+
+        .topnav-links a {
+            color: #f1f1f1;
+            font-size: 20px;
+            text-transform: lowercase;
+            text-decoration: none;
+        }
+
+        .topnav-links a:hover {
+            text-decoration: none;
+            color: #daf7a6;
+        }
 
         .sidenav {
             height: 100%;
@@ -22,13 +89,15 @@
         .sidenav a {
             padding: 6px 8px 6px 16px;
             text-decoration: none;
-            color: #818181;
-            font-size: 25px;
+            color: #f1f1f1;
+            font-size: 24px;
+            text-transform: lowercase;
             display: block;
         }
 
         .sidenav a:hover {
-            color: #f1f1f1;
+            color: #daf7a6;
+            text-decoration: none;
         }
 
         .logout {
@@ -48,6 +117,20 @@
     <title>{% block title %}Base Template{% endblock %}</title>
 </head>
 <body>
+    <nav class="topnav">
+        <div class="logo">
+            <h1>yardwrk</h1>
+        </div>
+        <ul class="topnav-links">
+            <li>
+                <a href="/customer">Customer Dash</a>
+            </li>
+            <li>
+                <a href="/customer/worker">Worker Dash</a>
+            </li>
+        </ul>
+        <a href="/accounts/login"><button class="btn btn-secondary">Sign In</button></a>
+    </nav>
 
     <div class="sidenav">
         <a href="/accounts/profile">Profile</a>
@@ -58,9 +141,7 @@
 
     <div id="content", class="main">
         <div class="row justify-content-center">
-            <div class="col-8">
-                <h1 class="mt-2">yardwrk</h1>
-                <hr class="mt-0 mb-4">
+            <div class="col-11">
                 {% block content %}
                     <h1>Base Template</h1>
                 {% endblock %}

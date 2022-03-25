@@ -5,11 +5,12 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <h2>Edit Address</h2>
-
+    <h1 class="mt-2">Edit Address</h1>
+    <hr class="mt-0 mb-4">
     <form method="post" class="form-group">
         {% csrf_token %}
         {{ form|crispy }}
         <button type="submit" class="btn btn-success">Submit Changes</button>
+        <button class="btn btn-danger">Cancel</button>
     </form>
 {% endblock %}
