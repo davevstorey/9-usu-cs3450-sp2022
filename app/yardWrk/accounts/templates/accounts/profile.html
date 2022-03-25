@@ -5,8 +5,10 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <h2>{{ user.first_name }} {{ user.last_name }}'s Profile</h2>
+    <h1 class="text-center">{{ user.first_name }} {{ user.last_name }}</h1>
 
+    <h1 class="mt-2">Profile</h1>
+    <hr class="mt-0 mb-4">
     <div class="justify-content-center">
         <form>
             <div class="form-group">
@@ -23,11 +25,11 @@
             </div>
         </form>
 
-        <p>Edit profile <a href="/accounts/profile/edit">here</a></p>
+        <p><a href="/accounts/profile/edit">Edit</a></p>
     </div>
 
-    <h2>Address Information</h2>
-
+    <h1 class="mt-2">Address</h1>
+    <hr class="mt-0 mb-4">
     <div class="form-group">
         <form>
             <div class="form-group">
@@ -48,6 +50,6 @@
             </div>
         </form>
 
-        <p>Edit Address <a href="/accounts/profile/edit-address">here</a></p>
+        <p><a href="/accounts/profile/edit-address">Edit</a></p>
     </div>
 {% endblock %}

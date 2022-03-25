@@ -5,10 +5,12 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+    <h1 class="mt-2">Create An Account</h1>
+    <hr class="mt-0 mb-4">
     <form method="post" class="form-group">
         {% csrf_token %}
         {{ form|crispy }}
-        <p>Already have an account? Sign in <a href="/accounts/login">here</a></p>
+        <p>Already have an account? <a href="/accounts/login">Sign In</a></p>
         <button type="submit" class="btn btn-success">Register</button>
     </form>
 {% endblock %}
