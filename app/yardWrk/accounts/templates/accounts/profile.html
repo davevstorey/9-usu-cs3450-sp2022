@@ -9,7 +9,7 @@
 
     <h1 class="mt-2">Profile</h1>
     <hr class="mt-0 mb-4">
-    <div class="justify-content-center">
+    <div class="form-group">
         <form>
             <div class="form-group">
                 <label for="username">Username</label>
@@ -25,7 +25,9 @@
             </div>
         </form>
 
-        <p><a href="/accounts/profile/edit">Edit</a></p>
+        <a href="{% url 'accounts:edit-profile' %}">
+            <button class="btn btn-outline-primary">Edit</button>
+        </a>
     </div>
 
     <h1 class="mt-2">Address</h1>
@@ -50,6 +52,8 @@
             </div>
         </form>
 
-        <p><a href="/accounts/profile/edit-address">Edit</a></p>
+        <a href="{% url 'accounts:edit-address' %}">
+            <button class="btn btn-outline-primary">Edit</button>
+        </a>
     </div>
 {% endblock %}
