@@ -23,55 +23,18 @@
             height: 100%;
         }
 
-        body {
-            height: 100%;
-            width: 100%;
-            overflow: auto;
-        }
-
         .topnav {
-            background-color: #023020;
-            color: #f1f1f1;
-            display: flex;
-            margin-left: 100px;
-            margin-bottom: 50px;
-            justify-content: space-around;
-            align-items: center;
-            min-height: 8vh;
-            position: sticky;
-            top: 0;
+            position: fixed;
+            width: 100%;
             z-index: 1;
         }
 
         .logo {
+            float: left;
+            margin-left: 180px;
             text-transform: lowercase;
             letter-spacing: 5px;
-            font-size: 32px;
-        }
-        .logo h1 {
-            color: #f1f1f1;
-        }
-
-        .topnav-links {
-            display: flex;
-            justify-content: space-around;
-            width: 30%;
-        }
-
-        .topnav-links li {
-            list-style: none;
-        }
-
-        .topnav-links a {
-            color: #f1f1f1;
-            font-size: 20px;
-            text-transform: lowercase;
-            text-decoration: none;
-        }
-
-        .topnav-links a:hover {
-            text-decoration: none;
-            color: #daf7a6;
+            font-size: 52px;
         }
 
         .sidenav {
@@ -81,7 +44,7 @@
             z-index: 1;
             top: 0;
             left: 0;
-            background-color: #111;
+            background-color: #023020;
             overflow-x: hidden;
             padding-top: 20px;
         }
@@ -90,7 +53,7 @@
             padding: 6px 8px 6px 16px;
             text-decoration: none;
             color: #f1f1f1;
-            font-size: 24px;
+            font-size: 28px;
             text-transform: lowercase;
             display: block;
         }
@@ -107,6 +70,7 @@
         }
 
         .main {
+            margin-top: 120px;
             margin-left: 160px;
             padding: 0px 10px;
         }
@@ -117,26 +81,48 @@
     <title>{% block title %}Base Template{% endblock %}</title>
 </head>
 <body>
-    <nav class="topnav">
-        <div class="logo">
-            <h1>yardwrk</h1>
-        </div>
-        <ul class="topnav-links">
-            <li>
-                <a href="/customer">Customer Dash</a>
-            </li>
-            <li>
-                <a href="/customer/worker">Worker Dash</a>
-            </li>
-        </ul>
-        <a href="/accounts/login"><button class="btn btn-secondary">Sign In</button></a>
-    </nav>
+    <header class="topnav">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="d-flex flex-grow-1">
+                <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
+                <a class="navbar-brand d-none d-lg-inline-block" href="#">
+                    <h1 class="logo">yardwrk</h1>
+                </a>
+                <div class="w-100 text-right">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
+                <ul class="navbar-nav ml-auto flex-nowrap">
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item"></li>
+                            <a href="{% url 'accounts:profile' %}" class="nav-link m-2 menu-item nav-active">
+                                <button class="btn btn-secondary">Account</button>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="{% url 'accounts:login' %}" class="nav-link m-2 menu-item nav-active">
+                                <button class="btn btn-secondary">Sign In</button>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'accounts:register' %}" class="nav-link m-2 menu-item nav-active">
+                                <button class="btn btn-secondary">Create An Account</button>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </header>
 
     <div class="sidenav">
-        <a href="/accounts/profile">Profile</a>
-        <a href="/accounts/register">Register</a>
-        <a href="/accounts/login">Login</a>
-        <a class="logout" href="/accounts/logout">Logout</a>
+        <a href="{% url 'yardSite:customerDashboard' %}">Customer</a>
+        <a href="{% url 'yardSite:workerDashboard' %}">Worker</a>
+        <a class="logout" href="{% url 'accounts:logout' %}">Logout</a>
     </div>
 
     <div id="content", class="main">

@@ -1,57 +1,58 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Worker</title>
-    </head>
+{% extends "yardSite/base.html" %}
 
-    <body>
-        <h1>Worker Profile for {{ name }}</h1>
+{% block title %} Worker Dashboard {% endblock %}
 
-        <div>
-            <h2>Jobs</h2>
-            {% if jobs %}
-                <ul>
-                    {% for job in jobs %}
-                        <li>{{ job }}</li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <p>No Jobs Available</p>
-            {% endif %}
-        </div>
-        
-        {% comment %}
-        <h1>Pending</h1>
-        {% if pending %}
+{% block content %}
+    <h1>Worker Profile for {{ name }}</h1>
+
+    <div>
+        <h1 class="mt-2">Jobs</h1>
+        <hr class="mt-0 mb-4">
+        {% if jobs %}
             <ul>
-                {% for job in pending %}
+                {% for job in jobs %}
                     <li>{{ job }}</li>
                 {% endfor %}
             </ul>
         {% else %}
-            <p>No Pending Jobs Available</p>
+            <p>No Jobs Available</p>
         {% endif %}
-        <h1>Currently Working On</h1>
-        {% if prog %}
-            <ul>
-                {% for job in prog %}
-                    <li>{{ job }}</li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No In Progress Jobs Available</p>
-        {% endif %}
-        <h1>Completed</h1>
-        {% if comp %}
-            <ul>
-                {% for job in comp %}
-                    <li>{{ job }}</li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No Completed Jobs</p>
-        {% endif %}
-        {% endcomment %}
-    </body>
-</html>
+    </div>
+    
+    {% comment %}
+    <h1 class="mt-2">Pending</h1>
+    <hr class="mt-0 mb-4">
+    {% if pending %}
+        <ul>
+            {% for job in pending %}
+                <li>{{ job }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No Pending Jobs Available</p>
+    {% endif %}
+    <h1 class="mt-2">Working On</h1>
+    <hr class="mt-0 mb-4">
+    {% if prog %}
+        <ul>
+            {% for job in prog %}
+                <li>{{ job }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No In Progress Jobs Available</p>
+    {% endif %}
+    <h1>Completed</h1>
+    <h1 class="mt-2">Completed</h1>
+    <hr class="mt-0 mb-4">
+    {% if comp %}
+        <ul>
+            {% for job in comp %}
+                <li>{{ job }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No Completed Jobs</p>
+    {% endif %}
+    {% endcomment %}
+{% endblock %}
