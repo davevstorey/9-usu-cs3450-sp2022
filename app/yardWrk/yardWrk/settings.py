@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'phonenumber_field',
     'accounts.apps.AccountsConfig',
-    'yardSite.apps.YardsiteConfig'
+    'yardSite.apps.YardsiteConfig',
+    'owner.apps.OwnerConfig'
 ]
 
 MIDDLEWARE = [

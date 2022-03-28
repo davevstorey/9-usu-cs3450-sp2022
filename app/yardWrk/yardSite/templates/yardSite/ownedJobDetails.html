@@ -11,6 +11,6 @@
         <li>Expected Completion Date: {{ job.date_to_be_finished_by }}</li>
     </ul>
     {% if job.available %}
-        <a href="{% url 'editJob' job.id %}">Edit</a>
+        <a href="{% url 'yardSite:editJob' job.id %}">Edit</a>
     {% endif %}
 </div>
