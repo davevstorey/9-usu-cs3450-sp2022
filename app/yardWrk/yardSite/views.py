@@ -11,15 +11,15 @@ from .forms import JobPostForm
 @login_required(login_url='/accounts/login')
 def CustomerDashboard(request):
     # Grab the customer that is tied to the logged in user
-    currentUser = Customer.objects.filter(user=request.user)[0]
+    currentUserCustomerProfile = request.user.customer
     
-    pending_jobs = Job.objects.filter(available=True).filter(completed=False).filter(customer=currentUser)
-    progressing_jobs = Job.objects.filter(available=False).filter(completed=False).filter(customer=currentUser)
-    completed_jobs = Job.objects.filter(completed=True).filter(customer=currentUser)
+    pending_jobs = Job.objects.filter(customer=currentUserCustomerProfile).filter(available=True).filter(completed=False)
+    progressing_jobs = Job.objects.filter(customer=currentUserCustomerProfile).filter(available=False).filter(completed=False)
+    completed_jobs = Job.objects.filter(customer=currentUserCustomerProfile).filter(completed=True)
 
     context = {
         'pending_jobs': pending_jobs,
-        'progresesing_jobs': progressing_jobs,
+        'progressing_jobs': progressing_jobs,
         'completed_jobs': completed_jobs,
     }
 
