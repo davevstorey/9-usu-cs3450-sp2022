@@ -62,7 +62,7 @@ def create_job_post(request):
             instance.zip_code = request.user.zip_code
             instance.customer = request.user.customer
             instance.save()
-            return redirect('/customer')
+            return redirect('yardsite/customer')
         else: 
             print(form.errors)
     else:
@@ -77,7 +77,7 @@ def editJob(request, job_id):
         form = JobPostForm(request.POST, instance=requested_job)
         if form.is_valid():
             form.save()
-            return redirect('/customer')
+            return redirect('yardsite/customer')
         else: 
             print(form.errors)
     else:
