@@ -32,13 +32,15 @@ def WorkerDashboard(request):
     worker = w_user.worker
     # Gets available jobs that weren't posted by this user
     available_jobs = Job.objects.filter(available=True).filter(completed=False).exclude(customer=w_user.customer)
-
+    
     #job_list = Job.objects.all()
-    job_list = Job.objects.filter(worker=worker)
+    job_list = Job.objects.filter(worker=worker).filter(completed=False)
+    completed_job_list = Job.objects.filter(worker=worker).filter(completed=True)
     context = {
         'name': w_name,
-        'jobs': job_list,
-        'available': available_jobs
+        'assigned': job_list,
+        'available': available_jobs,
+        'completed': completed_job_list
     }
     return render(request, 'yardSite/workerDashboard.html', context)
 
