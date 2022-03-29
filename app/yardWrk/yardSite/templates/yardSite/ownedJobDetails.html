@@ -17,7 +17,21 @@
             <li>Expected Completion Date: {{ job.date_to_be_finished_by }}</li>
         </ul>
         {% if job.available %}
-            <a href="{% url 'yardSite:editJob' job.id %}">Edit</a>
+            <a href="{% url 'yardSite:editJob' job.id %}">
+                <button class="btn btn-primary">Edit</button>
+            </a>
+            {% if can_assign %}
+            <a href="{% url 'yardSite:acceptedJob' job.id %}">
+                <button class="btn btn-primary">Take Job</button>
+            </a>
+            {% endif %}
+        {% else %}
+            {% if not job.completed %}
+                <a href="{% url 'yardSite:finishJob' job.id %}">
+                    <button class="btn btn-primary">Record Completion</button>
+                </a>
+            {% endif %}
         {% endif %}
+
     </div>
 {% endblock %}

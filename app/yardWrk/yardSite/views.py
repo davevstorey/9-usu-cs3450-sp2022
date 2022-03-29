@@ -33,7 +33,6 @@ def WorkerDashboard(request):
     # Gets available jobs that weren't posted by this user
     available_jobs = Job.objects.filter(available=True).filter(completed=False).exclude(customer=w_user.customer)
     
-    #job_list = Job.objects.all()
     job_list = Job.objects.filter(worker=worker).filter(completed=False)
     completed_job_list = Job.objects.filter(worker=worker).filter(completed=True)
     context = {
@@ -47,12 +46,48 @@ def WorkerDashboard(request):
 @login_required(login_url='/accounts/login')
 def OwnedJobDetails(request, job_id):
     requested_job = Job.objects.filter(id=job_id)[0]
+    currentUserCustomerProfile = request.user.customer
 
+    can_assign_to_self = True
+    if requested_job.customer == currentUserCustomerProfile:
+        can_assign_to_self = False
+    
     context = {
-        'job': requested_job,
+        'can_assign': can_assign_to_self,
+        'job': requested_job
     }
 
     return render(request, 'yardSite/ownedJobDetails.html', context)
+
+@login_required(login_url='/accounts/login')
+def accepted_job(request, job_id):
+    accepted_job = Job.objects.filter(id=job_id)[0]
+    currentUserWorkerProfile = request.user.worker
+
+    accepted_job.available = False
+    accepted_job.worker = currentUserWorkerProfile
+    accepted_job.save()
+
+    context = {
+        'job': accepted_job
+    }
+
+    return render(request, 'yardSite/acceptedJob.html', context)
+
+@login_required(login_url='/accounts/login')
+def finish_job(request, job_id):
+    completed_job = Job.objects.filter(id=job_id)[0]
+
+    completed_job.completed = True
+    completed_job.save()
+
+    # Add logic for payment here
+
+    context = {
+        'job': completed_job
+    }
+
+    return render(request, 'yardSite/finishJob.html', context)
 
 @login_required(login_url='/accounts/login')
 def create_job_post(request):
