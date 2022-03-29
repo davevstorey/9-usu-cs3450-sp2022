@@ -1,16 +1,23 @@
-{{ job }}
-<div>
-    <ul>
-        <li>Job Name: {{ job.name }}</li>
-        <li>Job Description: {{ job.description }}</li>
-        <li>Job Type: {{ job.job_type }}</li>
-        <li>Job Reward: {{ job.cash_reward }}</li>
-        <li>Job Owner: {{ job.customer.user }}</li>
-        <li>Job Status: THIS MAY NEED SOME WORK IN DB</li>
-        <li>Assigned Worker: {{ job.worker.user }}</li>
-        <li>Expected Completion Date: {{ job.date_to_be_finished_by }}</li>
-    </ul>
-    {% if job.available %}
-        <a href="{% url 'yardSite:editJob' job.id %}">Edit</a>
-    {% endif %}
-</div>
+{% extends "yardSite/base.html" %}
+
+{% block title %} Create Job Post {% endblock %}
+
+{% block content %}
+    {{ job }}
+    
+    <div>
+        <ul>
+            <li>Job Name: {{ job.name }}</li>
+            <li>Job Description: {{ job.description }}</li>
+            <li>Job Type: {{ job.job_type }}</li>
+            <li>Job Reward: {{ job.cash_reward }}</li>
+            <li>Job Owner: {{ job.customer.user }}</li>
+            <li>Job Status: THIS MAY NEED SOME WORK IN DB</li>
+            <li>Assigned Worker: {{ job.worker.user }}</li>
+            <li>Expected Completion Date: {{ job.date_to_be_finished_by }}</li>
+        </ul>
+        {% if job.available %}
+            <a href="{% url 'yardSite:editJob' job.id %}">Edit</a>
+        {% endif %}
+    </div>
+{% endblock %}

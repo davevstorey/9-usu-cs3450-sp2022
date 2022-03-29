@@ -1,3 +1,5 @@
+{% extends "yardSite/base.html" %}
+
 {% block title %} Edit Job Post {% endblock %}
 
 {% load crispy_forms_tags %}
@@ -9,5 +11,6 @@
         {% csrf_token %}
         {{ form|crispy }}
         <button type="submit" class="btn btn-success">Update</button>
+        <button class="btn btn-danger">Cancel</button>
     </form>
 {%endblock%}

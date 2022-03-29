@@ -25,6 +25,7 @@ def CustomerDashboard(request):
 
     return render(request, 'yardSite/customerDashboard.html', context)
 
+@login_required(login_url='/accounts/login')
 def WorkerDashboard(request):
     w_user = request.user
     w_name = w_user.get_full_name()
@@ -41,6 +42,7 @@ def WorkerDashboard(request):
     }
     return render(request, 'yardSite/workerDashboard.html', context)
 
+@login_required(login_url='/accounts/login')
 def OwnedJobDetails(request, job_id):
     requested_job = Job.objects.filter(id=job_id)[0]
 
@@ -50,6 +52,7 @@ def OwnedJobDetails(request, job_id):
 
     return render(request, 'yardSite/ownedJobDetails.html', context)
 
+@login_required(login_url='/accounts/login')
 def create_job_post(request):
     if request.method == 'POST':
         form = JobPostForm(request.POST)
@@ -66,6 +69,7 @@ def create_job_post(request):
         form = JobPostForm()
     return render(request, 'yardSite/create-job-post.html', { 'form': form })
 
+@login_required(login_url='/accounts/login')
 def editJob(request, job_id):
     requested_job = Job.objects.filter(id=job_id)[0]
 
