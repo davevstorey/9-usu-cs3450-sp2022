@@ -1,12 +1,17 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from django.shortcuts import render
-from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+
 from .models import *
 from .forms import JobPostForm
 
 # Responsible for creating the view a user sees when navigating to their customer page.
+
+def empty(request):
+    return redirect('/yardsite/home')
+
+def home(request):
+    return render(request, 'yardSite/home.html')
 
 @login_required(login_url='/accounts/login')
 def CustomerDashboard(request):

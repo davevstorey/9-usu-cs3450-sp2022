@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.apps import apps
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 
 from .forms import RegisterForm, EditProfileForm, EditAddressForm
@@ -35,7 +35,7 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('/accounts/profile')
+            return redirect('/yardsite')
     else:
         form = AuthenticationForm()
     return render(request, 'accounts/login.html', { 'form': form })

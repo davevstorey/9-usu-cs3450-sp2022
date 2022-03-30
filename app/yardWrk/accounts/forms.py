@@ -33,9 +33,9 @@ class EditProfileForm(forms.ModelForm):
         fields = [
             "username",
             "email",
-            "phone",
             "first_name",
-            "last_name"
+            "last_name",
+            "phone",
         ]
 
 class EditAddressForm(forms.ModelForm):
