@@ -11,7 +11,19 @@ def empty(request):
     return redirect('/yardsite/home')
 
 def home(request):
-    return render(request, 'yardSite/home.html')
+    qs = Job.objects.all().filter(available=True)
+    filters = []
+    checked = []
+    for type,name in Job.JOB_TYPES:
+        if request.GET.get(type) != 'on':
+            filters.append(type)
+        else:
+            checked.append(type)
+    if len(filters) > 0 and len(filters) < 7:
+        for filter in filters:
+            qs = qs.exclude(job_type=filter)
+
+    return render(request, 'yardSite/home.html', { 'queryset': qs, 'checked': checked })
 
 @login_required(login_url='/accounts/login')
 def CustomerDashboard(request):
