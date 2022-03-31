@@ -72,11 +72,15 @@ def OwnedJobDetails(request, job_id):
     currentUserCustomerProfile = request.user.customer
 
     can_assign_to_self = True
+    can_edit = False
     if requested_job.customer == currentUserCustomerProfile:
         can_assign_to_self = False
-    
+        can_edit = True
+    # can_assign_to_self should only be True if the user is accessing the job as a worker. can_edit same
+    # except for as customer
     context = {
         'can_assign': can_assign_to_self,
+        'can_edit': can_edit,
         'job': requested_job
     }
 
