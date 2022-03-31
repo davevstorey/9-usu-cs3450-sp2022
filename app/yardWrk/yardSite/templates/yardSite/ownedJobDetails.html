@@ -3,39 +3,55 @@
 {% block title %} Job Details {% endblock %}
 
 {% block content %}
-    {{ job }}
-    
-    <div>
-        <ul>
-            <li>Job Name: {{ job.name }}</li>
-            <li>Job Description: {{ job.description }}</li>
-            <li>Job Type: {{ job.job_type }}</li>
-            <li>Job Reward: {{ job.cash_reward }}</li>
-            <li>Job Owner: {{ job.customer.user }}</li>
-            <li>Job Status: THIS MAY NEED SOME WORK IN DB</li>
-            <li>Assigned Worker: {{ job.worker.user }}</li>
-            <li>Expected Completion Date: {{ job.date_to_be_finished_by }}</li>
-        </ul>
+    <h1 class="mt-2">Job Details</h1>
+    <hr class="mt-0 mb-4">
+    <div class="card">
+        <div class="card-header">
+            {{ job.job_type }} - Posted by {{ job.name }} ({{job.customer.user }})
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">${{ job.cash_reward }}</h5>
+            <p class="card-text">{{ job.description }}</p>
+            <p class="card-text">Status - Not Yet Implemented</p>
+            {% if not job.available %}
+                <p class="card-text">Assigned to - {{ job.worker.user }}</p>
+            {% endif %}
+            <p class="card-text font-weight-bold">Expected Completion Date - {{ job.date_to_be_finished_by }}</p>
+            <h5 class="card-title">Address and Contact Info</h5>
+            <p class="card-text">Location - {{ job.customer.user.get_address }}</p>
+            <p class="card-text">Email - {{ job.customer.user.email }}</p>
+            <p class="card-text">Phone - {{ job.customer.user.phone }}</p>
+        </div>
+    </div>
+    <div class="row mt-2">
         {% if job.available %}
             {% if can_edit %}
-                <a href="{% url 'yardSite:editJob' job.id %}">
-                    <button class="mt-2 btn btn-outline-primary">Edit</button>
-                </a>
+                <div class="col">
+                    <a href="{% url 'yardSite:editJob' job.id %}">
+                        <button class="w-100 mt-2 btn btn-outline-primary">Edit</button>
+                    </a>
+                </div>
             {% endif %}
             {% if can_assign %}
-                <a href="{% url 'yardSite:acceptedJob' job.id %}">
-                    <button class="mt-2 btn btn-outline-primary">Take Job</button>
-                </a>
+                <div class="col">
+                    <a href="{% url 'yardSite:acceptedJob' job.id %}">
+                        <button class="w-100 mt-2 btn btn-outline-primary">Take Job</button>
+                    </a>
+                </div>
             {% endif %}
         {% else %}
             {% if not job.completed %}
                 {% if can_assign %}
-                    <a href="{% url 'yardSite:finishJob' job.id %}">
-                        <button class="mt-2 btn btn-outline-primary">Record Completion</button>
-                    </a>
+                    <div class="col">
+                        <a href="{% url 'yardSite:finishJob' job.id %}">
+                            <button class="w-100 mt-2 btn btn-outline-primary">Record Completion</button>
+                        </a>
+                    </div>
                 {% endif %}
             {% endif %}
         {% endif %}
-        <button class="mt-2 btn btn-outline-primary" onclick="history.back()">Back</button>
-    </div>
+        <div class="col">
+            <button class="w-100 mt-2 btn btn-outline-primary" onclick="history.back()">Back</button>
+        </div>
+    </div>    
 {% endblock %}
