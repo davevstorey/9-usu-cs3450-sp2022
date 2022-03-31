@@ -48,3 +48,9 @@ Navigate to yardWrk
 For system testing, launch the app in the browser. You'll be able to navigate around the site and test it as any actor. You can go to the docs folder and find the SystemTesting document. That will have detailed tests and the requirements they fulfill.
 
 You will also be able to check that the graphic and user interface parts of the app are working correctly. 
+
+## Sprint Reports
+
+Sprint reports are found by navigating to the following directory.
+
+    docs/Cs3450StandUps
