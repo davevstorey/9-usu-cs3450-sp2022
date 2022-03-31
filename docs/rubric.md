@@ -1,35 +1,20 @@
-## Milestone 2 Rubric and Justifications
+## Milestone 3 Rubric and Justifications
 
-- [x] Product Backlog in the GitHub Repository Issues has 10+ items.
-- Justification: Go to projects next to Actions and Wiki. Then click projects from what is pulled up.
+- [x] Sprint planning documents (3 of them).
+- Justification: Go to docs/Cs3450StandUps and view the planning documents. 
 
-- [x] Product Backlog in the GitHub Repository Issues have items small enough to be completed  by 1 person in 1-2 workdays.
-- Justification: Go to projects next to Actions and Wiki. Then click projects from what is pulled up. All products were done by 1 person generally. Maybe 2 if necessary. All in 1 - 2 as well.
+- [x] Standup Reports.
+- Justification: Go to docs/Cs3450StandUps and view the stand up reports.
 
-- [x] README.md is revised from Phase 1 if necessary. This includes organization and name scheme for the workspace, version control procedures, tool stack description and setup, build instructions, unit testing instructions, and system testing instructions.
-- Justification: No revision necessary. Find on github home screen.
+- [x] 70-80% of the Application implemented.
+- Justification: View the testing document located in docs/SystemTesting. There you can see requirements and tests to prove that they work. They do not cover every requirement as more tests need to be written. We also have a lot of the front end done, so it looks nicer now than what he had thought. Everything currently runs, and build instructions are located in the README.md file. We are not completely done, as the owner page still needs to be implemented. Job assignment, job viewing, job completion, login, database, etc are all implemented and mostly functional. 
 
-- [x] Project Plan is revised from Phase 1 if necessary. This includes a summary of the project being built, a description of team organization, policies, procedures, tools for communication, and risk analysis.
-- Justification: No change needed. Find in docs.
+- [x] Testing.
+- Justification: View the testing document located in docs/SystemTesting. The testing done is mainly system, userability, and regression testing. Not every test has been written, but there is a decent amount of requirement testing completed.
 
-- [x] Requirements Definition is revised from Phase 1 if necessary. This includes an introduction and context of the project, users and their goals, functional requirements, non-functional requirements, future features, and a glossary.
-- Justification: Small revision made find in docs folder
+- [x] Updated documentation.
+- Justification: Requirements needed to be updated, and was done.
 
-- [x] Use case diagrams that document key execution flows.
-- Justification: Found in docs/useCaseDiagrams.md to view all of them otherwise docs/useCaseDiagramsSrc/ to view all of them individually.
-
-- [ ] Class Diagrams that document the classes of objects in the system and their relationships.
-- Justification:
-
-- [x] Activity diagram that document key execution flows.
-- Justification: Found in docs/activityDiagramsSrc/.
-
-- [x] High-Fidelity prototype.
-- Justification:
-
-- [ ] Low-Fidelity prototype.
-- Justification:
-
-- [ ] History on the scrum board showing who is working on which items and when the items are completed.
-- Justification:
+- [x] Updated documentation (README.md).
+- Justification: Build instructions needed to be changed, so they were. Testing needed to be updated, and the repo to the reports were added.
 

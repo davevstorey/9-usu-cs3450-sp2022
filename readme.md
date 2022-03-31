@@ -26,36 +26,31 @@ Clone repository
 
     git clone git@github.com:davevstorey/9-usu-cs3450-sp2022.git
 
+Navigate to App
+
+    cd 9-usu-cs3450-sp2022/app/yardWrk/
+
 Initialize Database
 
-    python manage.py migrate
-
-Create Admin Account
-
-    python manage.py createsuperuser
-
-Add models to Database
-
-    python manage.py makemigrations app-name
-
-Update Database with new additions
-
+    python manage.py makemigrations
     python manage.py migrate
 
 Start server
 
     python manage.py runserver
 
-> The **Create Admin Account** instruction will prompt you to enter your desired identification/authorization information for the admin account
+Navigate to yardWrk
 
-> In the **Add models to Database** instruction includes *app-name* as a parameter. This will be updated later with the actual project name.
-
-## Unit Testing Instructions
-
-For unit testing, we will be using the python's *unittest* library. Documentation for this library can be found at https://docs.python.org/3/library/unittest.html. To run the tests, run *unittests.py* with the tests you want to run as command line arguments. No command line arguments will lead to all tests running.
+    http://127.0.0.1:8000/yardsite/
 
 ## System Testing Instructions
 
-For system testing, launch the app in the browser. You'll be able to navigate around the site and test it as any actor.
+For system testing, launch the app in the browser. You'll be able to navigate around the site and test it as any actor. You can go to the docs folder and find the SystemTesting document. That will have detailed tests and the requirements they fulfill.
 
-You will also be able to check that the graphic and user interface parts of the app are working correctly.
+You will also be able to check that the graphic and user interface parts of the app are working correctly. 
+
+## Sprint Reports
+
+Sprint reports are found by navigating to the following directory.
+
+    docs/Cs3450StandUps

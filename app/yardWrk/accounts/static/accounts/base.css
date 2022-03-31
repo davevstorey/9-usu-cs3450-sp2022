@@ -1,0 +1,54 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.main {
+    padding-top: 110px;
+}
+
+.gradient-custom {
+    background: #093028;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #237A57, #093028);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #237A57, #093028); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.nav-link {
+    font-family: 'Inconsolata', monospace;
+    font-family: 'Athiti', sans-serif;
+    letter-spacing: 2px;
+    font-weight: 400;
+    font-size: 16px;
+    margin: 5px;
+    color: #fff!important;
+}
+
+.navbar-nav {
+    text-align: right;
+    margin-right: 20px;
+}
+
+.menu-bar .navbar-toggler {
+    padding-right: 20px;
+    outline: none!important;
+    border: none!important;
+}
+
+.nav-link:hover {
+    font-weight: 500;
+    border-bottom: 1px solid #fff;
+}
+
+.navbar-brand {
+    font-family: 'Inconsolata', monospace;
+    font-family: 'Athiti', sans-serif;
+    font-size: 48px!important;
+    margin-left: 20px;
+}
+
+@media only screen and (max-width: 1000px) {
+    .nav-link:hover {
+        border-bottom: none!important;
+        font-weight: 500;
+    }
+}

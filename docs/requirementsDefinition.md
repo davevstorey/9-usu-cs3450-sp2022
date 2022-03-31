@@ -36,31 +36,45 @@ want to do it themself.
 1. User Authentication and Access\
 &emsp;1.1 User must be able to navigate to log in page\
 &emsp;1.2 User must be able to log in using username and password\
-&emsp;&emsp;1.2.1 User must be notified if login information is correct/incorrect\
+&emsp;&emsp;1.2.1 User cannot login if information is incorrect\
 &emsp;1.3 User must be able to create a new account\
 &emsp;&emsp;1.3.1 User will be taken to a new page to create a new account\
-&emsp;&emsp;1.3.2 User must provide valid email address to create a new account\
-&emsp;&emsp;1.3.3 Accounts with duplicate user names will not be allowed\
-&emsp;&emsp;1.3.4 Accounts with duplicate emails will not be allowed\
+&emsp;&emsp;1.3.2 Accounts with duplicate user names will not be allowed\
+&emsp;&emsp;1.3.3 Accounts with duplicate emails will not be allowed\
+&emsp;&emsp;1.3.4 Accounts with invalid emails will not be allowed\
+&emsp;&emsp;1.3.5 Accounts with invalid phone numbers will not be allowed\
 &emsp;1.4 Users are authorized to have a mix any of the following features and rights\
 &emsp;&emsp;1.4.1 All users should have access to both customer profile features and worker profile features. Given to them in two separate windows.\
 &emsp;&emsp;1.4.2 Users with owner status will have access to all customer, worker, and owner profile features.\
 2. User Profile Features\
 &emsp;2.1 Users will be able to have any combination of the following types: Worker, Customer, Owner\
 &emsp;2.2 User will be able to edit their account information\
-&emsp;&emsp;2.2.1 User will be able to add a picture to their profile\
-&emsp;&emsp;2.2.2 User will be able to add address, name, etc. to their profile\
-&emsp;&emsp;2.2.3 User will be able to change password information\
+&emsp;&emsp;2.2.1 User will be able to edit their name\
+&emsp;&emsp;2.2.2 User will be able to edit their address\
+&emsp;&emsp;2.2.3 User will be able to edit their zip code\
+&emsp;&emsp;2.2.4 User will be able to edit their phone number\
+&emsp;&emsp;2.2.5 User will be able to edit their username\
+&emsp;&emsp;2.2.6 User will be able to edit their email\
+&emsp;&emsp;2.2.7 User will be able to edit their city\
+&emsp;&emsp;2.2.8 User will be able to edit their state\
+&emsp;&emsp;2.2.9 User will be able to change password information\
 &emsp;2.3 Worker Profile Features\
-&emsp;&emsp;2.3.1 User will be able to set which jobs they would like to be assigned\
-&emsp;&emsp;2.3.2 User will be able to accept jobs\
-&emsp;&emsp;2.3.3 User will be able to receive money\
+&emsp;&emsp;2.3.1 User will be able to accept jobs\
+&emsp;&emsp;2.3.2 User will be able to receive money\
+&emsp;&emsp;2.3.3 User will be able to view job information from the worker dashboard\
+&emsp;&emsp;2.3.4 User will be able to view a list of all assigned jobs to the current user\
+&emsp;&emsp;2.3.5 User will be able to view a list of all available jobs to take.\
+&emsp;&emsp;2.3.6 User will be able to view a list of jobs they have completed.\
+&emsp;&emsp;2.3.7 User will be able to complete a job.\
 &emsp;2.4 Customer Profile Features\
 &emsp;&emsp;2.4.1 User will be able to post jobs\
 &emsp;&emsp;2.4.2 User will offer money for jobs\
 &emsp;&emsp;2.4.3 User will be able to load money on their account\
-&emsp;&emsp;2.4.4 User will be able to delete their account\
+&emsp;&emsp;2.4.4 User will be able to delete their pending jobs\
 &emsp;&emsp;2.4.5 User’s job posts will be primarily shown to workers in their area\
+&emsp;&emsp;2.4.6 User will be able to view all information on their jobs\
+&emsp;&emsp;2.4.7 User will be able to edit job information\
+&emsp;&emsp;2.4.8 User will be able to view a list of jobs they created\
 3. Owner Profile Features\
 &emsp;3.1 Owner will be able to change profile types\
 &emsp;3.2 Owner will be able to create/delete accounts\

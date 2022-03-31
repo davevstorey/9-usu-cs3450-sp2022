@@ -1,16 +1,20 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from phone_field import PhoneField
+from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 
 class CustomUser(AbstractUser):
-    email = models.CharField(max_length=128)
+    email = models.CharField(max_length=128, unique=True)
     zip_code = models.CharField(max_length=12)
     city = models.CharField(max_length=64)
     address = models.CharField(max_length=64)
-    # phone = PhoneField(blank=True, help_text='Phone Number')
+    state = models.CharField(max_length=4)
+    phone = PhoneNumberField()
 
     # form of wallet/balance (Integer Representation)
     # balance = models.IntegerField()
+
+    def __str__(self):
+        return self.username
 

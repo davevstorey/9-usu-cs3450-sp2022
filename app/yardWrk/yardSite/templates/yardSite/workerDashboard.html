@@ -1,0 +1,78 @@
+{% extends "yardSite/base.html" %}
+
+{% block title %} Worker Dashboard {% endblock %}
+
+
+{% block content %}
+    <h1>Worker Profile for {{ name }}</h1>
+
+    <div>
+        <h1 class="mt-2">Assigned Jobs</h1>
+        <hr class="mt-0 mb-4">
+        {% if assigned %}
+            <div class="card-columns">
+                {% for job in assigned %}
+                    <div class="card bg-light text-center">
+                        <h5 class="card-header">{{job.job_type}}</h5>
+                        <div class="card-body">
+                            <p class="card-text">{{job.description}}</li>
+                            <p class="card-text">Payment: ${{job.cash_reward}}</p>
+                        </div>
+                        <a href="{% url 'yardSite:ownedJobDetails' job.id %}">
+                            <button class="btn btn-primary" style="margin-bottom: 10px;">Details</button>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No Jobs Assigned</p>
+        {% endif %}
+    </div>
+    
+    <div>
+        <h1 class="mt-2">Available Jobs</h1>
+        <hr class="mt-0 mb-4">
+        {% if available %}
+            <div class="card-columns">
+                {% for job in available %}
+                    <div class="card bg-light text-center">
+                        <h5 class="card-header">{{job.job_type}}</h5>
+                        <div class="card-body">
+                            <p class="card-text">{{job.description}}</li>
+                            <p class="card-text">Payment: ${{job.cash_reward}}</p>
+                        </div>
+                        <a href="{% url 'yardSite:ownedJobDetails' job.id %}">
+                            <button class="btn btn-primary" style="margin-bottom: 10px;">Details</button>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>            
+        {% else %}
+            <p>No Jobs Available</p>
+        {% endif %}
+    </div>
+
+    <div>
+        <h1 class="mt-2">Completed Jobs</h1>
+        <hr class="mt-0 mb-4">
+        {% if completed %}
+            <div class="card-columns">
+                {% for job in completed %}
+                    <div class="card bg-light text-center">
+                        <h5 class="card-header">{{job.job_type}}</h5>
+                        <div class="card-body">
+                            <p class="card-text">{{job.description}}</li>
+                            <p class="card-text">Payment: ${{job.cash_reward}}</p>
+                        </div>
+                        <a href="{% url 'yardSite:ownedJobDetails' job.id %}">
+                            <button class="btn btn-primary" style="margin-bottom: 10px;">Details</button>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No Completed Jobs</p>
+        {% endif %}
+    </div>
+    
+{% endblock %}
