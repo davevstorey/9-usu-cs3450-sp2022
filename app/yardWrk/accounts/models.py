@@ -18,3 +18,6 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.username
 
+    def get_address(self):
+        return f"{self.address}, {self.city}, {self.state}, {self.zip_code}"
+
