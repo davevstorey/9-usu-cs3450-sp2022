@@ -1,0 +1,12 @@
+{{ review }}
+<div>
+    <ul>
+            <li>Date Posted: {{ review.published_date }} </li>
+            <li>Review: {{ review.review_text }} </li>
+            <li>Rating: {{ review.rating_num }} </li>
+            <li>RedListed?: {{ review.redList_bool }} </li>
+    </ul>
+    {% if review.available %}
+        <a href="{% url 'editReview' review.id %}">Edit Review</a>
+    {% endif %}
+</div>

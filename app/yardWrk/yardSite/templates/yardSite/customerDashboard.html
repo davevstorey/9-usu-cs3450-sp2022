@@ -67,6 +67,9 @@
                     <a href="{% url 'yardSite:ownedJobDetails' job.id %}">
                         <button class="btn btn-primary" style="margin-bottom: 10px;">Details</button>
                     </a>
+		    <a href="{% url 'yardSite:customerCreateReview' job.id %}">
+            	    	<button class="btn btn-primary">Leave a review</button>
+        	    </a>
                 </div>
             {% endfor %}
         </div>
@@ -74,4 +77,26 @@
             <p>You have no completed jobs.</p>
         {% endif %}
     </div>
+
+    <div>
+        <h1 class="mt-2">Reveiws received by workers</h1>
+        <hr class="mt-0 mb-4">
+        {% if customerReviews %}
+            <div class="card-columns">
+                {% for review in customerReviews %}
+                    <div class="card bg-light text-center">
+                        <h5 class="card-header">{{ review.job.job_type}}</h5>
+                        <div class="card-body">
+                            <p class="card-text">{{ review.job.description}}</li>
+                            <p class="card-text">received a {{ review.rating_num }} star rating</p>
+			    <p class="card-text"> {{ review.review_text }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No received reviews</p>
+        {% endif %}
+    </div>
+
 {% endblock %}
