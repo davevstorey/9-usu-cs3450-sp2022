@@ -74,5 +74,26 @@
             <p>No Completed Jobs</p>
         {% endif %}
     </div>
+
+    <div>
+        <h1 class="mt-2">Reviews received by customers</h1>
+        <hr class="mt-0 mb-4">
+        {% if workerReviews %}
+            <div class="card-columns">
+                {% for review in workerReviews %}
+                    <div class="card bg-light text-center">
+                        <h5 class="card-header">{{ review.job.job_type}}</h5>
+                        <div class="card-body">
+                            <p class="card-text">{{ review.job.description}}</li>
+                            <p class="card-text">received a {{ review.rating_num }} rating</p>
+			    <p class="card-text"> {{ review.review_text }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No received reviews</p>
+        {% endif %}
+    </div>
     
 {% endblock %}

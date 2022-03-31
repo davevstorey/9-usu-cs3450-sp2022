@@ -16,19 +16,7 @@ class Customer(models.Model):
 		primary_key=True,
 	)
 
-class Review(models.Model):
-    published_date = models.DateTimeField('date posted')
-    review_text = models.CharField(max_length=400)
-    rating_num = models.IntegerField(default=3)
-    redList_bool = models.BooleanField()
-    revieweeUserType = models.CharField(max_length=8)
-    reviewerName_text = models.CharField(max_length = 40)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    worker = models.ForeignKey(Worker, on_delete=models.CASCADE)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.review_text
 
 class Job(models.Model):
     # Decided on three character codes for internal job representation
@@ -84,3 +72,16 @@ class Job(models.Model):
 
     def __str__(self):
         return f"{self.name} - Zip Code: {self.zip_code} - Type: {self.job_type} Reward: {self.cash_reward} Available: {self.available} Completed: {self.completed} Should be finished by: {self.date_to_be_finished_by} Customer: {self.customer} Worker: {self.worker}"
+
+class Review(models.Model):
+    published_date = models.DateTimeField('date posted')
+    review_text = models.CharField(max_length=400)
+    rating_num = models.IntegerField(default=3)
+    redList_bool = models.BooleanField()
+    reviewerName_text = models.CharField(max_length = 40)
+    job = models.ForeignKey(Job, on_delete=models.CASCADE)
+    reviewee = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    isCustomer_bool = models.BooleanField()
+
+    def __str__(self):
+        return self.review_text
