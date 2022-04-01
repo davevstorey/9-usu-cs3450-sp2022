@@ -59,3 +59,9 @@ You will also be able to check that the graphic and user interface parts of the 
 Sprint reports are found by navigating to the following directory.
 
     docs/Cs3450StandUps
+
+## Rubric.md
+
+For the rubric entailing how we finished each requirement on the assignment navigate into docs
+
+    docs/rubric.md
