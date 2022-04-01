@@ -20,7 +20,7 @@ def home(request):
             filters.append(type)
         else:
             checked.append(type)
-    if len(filters) > 0 and len(filters) < 7:
+    if len(checked) > 0:
         for filter in filters:
             qs = qs.exclude(job_type=filter)
 
