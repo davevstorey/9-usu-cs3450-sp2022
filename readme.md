@@ -29,6 +29,11 @@ Clone repository
 Navigate to App
 
     cd 9-usu-cs3450-sp2022/app/yardWrk/
+    
+Pip Install Python Dependencies
+
+    pip install django-crispy-forms
+    pip install django-phonenumber-field[phonenumberslite]
 
 Initialize Database
 
