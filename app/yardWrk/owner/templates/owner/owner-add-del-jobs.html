@@ -1,0 +1,33 @@
+{% extends "yardSite/base.html" %}
+
+{% block title %} Create Job Post {% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div>
+        <h1 class="mt-2">All Posted Jobs</h1>
+        <hr class="mt-0 mb-4">
+        {% if all_jobs %}
+            <div class="row row-cols-1 row-cols-md-6 g-4">
+                {% for job in all_jobs %}
+                    <div class="col">
+                        <div class="card text-center">
+                            <div class="card-header">{{ job.job_type }}</div>
+                            <div class="card-body">
+                                <h5 class="card-title">${{ job.cash_reward }}</h5>
+                                <p class="card-text">{{ job.description }}</p>
+                            </div>
+                            <a href="{% url 'owner:owner_job_details' job.id %}"><button class="btn btn-outline-primary w-100" href="">Details</button></a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No Jobs have been posted</p>
+        {% endif %}
+        <a href="{% url 'yardSite:createJob' %}">
+            <button class="mt-2 btn btn-primary">Create Job (Not Yet Implemented)</button>
+        </a>
+    </div>
+{% endblock %}

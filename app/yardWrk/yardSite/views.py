@@ -52,7 +52,7 @@ def WorkerDashboard(request):
     w_name = w_user.get_full_name()
     worker = w_user.worker
     # Gets available jobs that weren't posted by this user
-    available_jobs = Job.objects.filter(available=True).filter(completed=False).exclude(customer=w_user.customer)
+    #available_jobs = Job.objects.filter(available=True).filter(completed=False).exclude(customer=w_user.customer)
     review_list = Review.objects.filter(reviewee=w_user).exclude(isCustomer_bool = True)
     
     job_list = Job.objects.filter(worker=worker).filter(completed=False)
@@ -60,7 +60,7 @@ def WorkerDashboard(request):
     context = {
         'name': w_name,
         'assigned': job_list,
-        'available': available_jobs,
+        #'available': available_jobs,
         'completed': completed_job_list,
         'workerReviews': review_list
     }

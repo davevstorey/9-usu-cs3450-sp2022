@@ -5,5 +5,12 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-
+<div>
+    <h1 class="mt-2">Owner Dashboard</h1>
+    <hr class="mt-0 mb-4">
+    
+    <a href="{% url 'owner:owner_add_delete_jobs' %}">
+        <button class="mt-2 btn btn-primary">See all jobs</button>
+    </a>
+</div>
 {% endblock %}
