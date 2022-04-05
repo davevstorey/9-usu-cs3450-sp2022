@@ -3,6 +3,14 @@
 {% block title %} Customer Dashboard {% endblock %}
 
 {% block content %}
+
+    <div>
+        <h1 class="mt-2">Wallet</h1>
+        <p>{{ currentCustomer.user.wallet }}</p>
+        <button class="mt-2 btn btn-primary" href="">Add Funds</button><br>
+        <button class="mt-2 btn btn-primary" href="">Withdraw Funds</button>
+    </div>
+
     <div>
         <h1 class="mt-2">Pending Jobs</h1>
         <hr class="mt-0 mb-4">

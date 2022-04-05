@@ -41,7 +41,8 @@ def CustomerDashboard(request):
         'pending_jobs': pending_jobs,
         'progressing_jobs': progressing_jobs,
         'completed_jobs': completed_jobs,
-        'customerReviews': review_list
+        'customerReviews': review_list,
+        'currentCustomer' : currentUserCustomerProfile,
     }
 
     return render(request, 'yardSite/customerDashboard.html', context)
