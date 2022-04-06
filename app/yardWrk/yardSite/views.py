@@ -39,6 +39,8 @@ def CustomerDashboard(request):
         elif(request.POST.get("Withdraw")):
             sumToSub = int(request.POST.get("Withdraw"))
             user.wallet -= sumToSub
+            if (user.wallet < 0):
+                user.wallet = 0
         user.save()
         return redirect('/yardsite/customer')
     else:
