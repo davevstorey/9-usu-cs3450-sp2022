@@ -6,16 +6,16 @@
 
     <div>
         <h1 class="mt-2">Wallet</h1>
-        <p>{{ currentCustomer.user.wallet }}</p>
+        <p>${{ currentCustomer.user.wallet }}</p>
         <form method="post" class="form-group">
             {% csrf_token %}
-            $<input type="number" name="Add" value="0"></input>
+            $<input type="number" name="Add" value="0" min="0"></input>
             <button type="submit" class="btn btn-success">Add Funds</button>
         </form>
         <br>
         <form method="post" class="form-group">
             {% csrf_token %}
-            $<input type="number" name="Withdraw" value="0"></input>
+            $<input type="number" name="Withdraw" value="0" min="0"></input>
             <button type="submit" class="btn btn-success">Withdraw Funds</button>
         </form>
     </div>

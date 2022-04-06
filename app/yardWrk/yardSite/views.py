@@ -67,6 +67,18 @@ def WorkerDashboard(request):
     w_user = request.user
     w_name = w_user.get_full_name()
     worker = w_user.worker
+    wallet = w_user.wallet
+
+    if request.method == 'POST':
+        user = request.user
+        if(request.POST.get("Withdraw")):
+            sumToSub = int(request.POST.get("Withdraw"))
+            user.wallet -= sumToSub
+            if (user.wallet < 0):
+                user.wallet = 0
+        user.save()
+        return redirect('/yardsite/worker')
+
     # Gets available jobs that weren't posted by this user
     #available_jobs = Job.objects.filter(available=True).filter(completed=False).exclude(customer=w_user.customer)
     review_list = Review.objects.filter(reviewee=w_user).exclude(isCustomer_bool = True)
@@ -78,7 +90,8 @@ def WorkerDashboard(request):
         'assigned': job_list,
         #'available': available_jobs,
         'completed': completed_job_list,
-        'workerReviews': review_list
+        'workerReviews': review_list,
+        'wallet' : wallet,
     }
     return render(request, 'yardSite/workerDashboard.html', context)
 
