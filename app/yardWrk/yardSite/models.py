@@ -41,9 +41,9 @@ class Job(models.Model):
         (DECORATION, 'Decoration'),
     )
 
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=24)
 
-    description = models.CharField(max_length=100)
+    description = models.CharField(max_length=200)
 
     # No id field needed, Django ORM handles this
 
@@ -65,10 +65,16 @@ class Job(models.Model):
 
     date_to_be_finished_by = models.DateField(blank=True, null=True)
 
-    zip_code = models.IntegerField()
+    zip_code = models.CharField(max_length=12)
 
     # GETTERS and SETTERS not needed. All Django model fields can be
     # accessed with the standard '.' syntax
+
+    def preview_description(self, length=150):
+        if len(self.description) <= length:
+            return self.description
+        else:
+            return ' '.join(self.description[:length+1].split(' ')[0:-1]) + '...'
 
     def __str__(self):
         return f"{self.name} - Zip Code: {self.zip_code} - Type: {self.job_type} Reward: {self.cash_reward} Available: {self.available} Completed: {self.completed} Should be finished by: {self.date_to_be_finished_by} Customer: {self.customer} Worker: {self.worker}"
