@@ -34,13 +34,11 @@ def CustomerDashboard(request):
         user = request.user
         if(request.POST.get("Add")):
             sumToAdd = int(request.POST.get("Add"))
-            print(sumToAdd)
             user.wallet += sumToAdd
         elif(request.POST.get("Withdraw")):
             sumToSub = int(request.POST.get("Withdraw"))
-            user.wallet -= sumToSub
-            if (user.wallet < 0):
-                user.wallet = 0
+            if (user.wallet >= sumToSub):
+                user.wallet -= sumToSub
         user.save()
         return redirect('/yardsite/customer')
     else:
@@ -73,9 +71,8 @@ def WorkerDashboard(request):
         user = request.user
         if(request.POST.get("Withdraw")):
             sumToSub = int(request.POST.get("Withdraw"))
-            user.wallet -= sumToSub
-            if (user.wallet < 0):
-                user.wallet = 0
+            if (user.wallet >= sumToSub):
+                user.wallet -= sumToSub
         user.save()
         return redirect('/yardsite/worker')
 
@@ -135,9 +132,23 @@ def finish_job(request, job_id):
     completed_job = Job.objects.filter(id=job_id)[0]
 
     completed_job.completed = True
-    completed_job.save()
 
-    # Add logic for payment here
+    workerUser = CustomUser.objects.get(id=completed_job.worker.user.id)
+    customerUser = CustomUser.objects.get(id=completed_job.customer.user.id)
+
+    # Calculate the different cuts
+    totalReward = int(completed_job.cash_reward)
+    ownerCut = totalReward * 0.1
+    workerCut = totalReward - ownerCut
+
+    # Add or subtract cuts from the appropriate users
+    workerUser.wallet += workerCut
+    customerUser.user.wallet -= totalReward
+
+    # Save changes
+    workerUser.save()
+    customerUser.save()
+    completed_job.save()
 
     context = {
         'job': completed_job
