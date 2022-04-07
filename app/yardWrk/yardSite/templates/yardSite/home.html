@@ -28,6 +28,10 @@
                 <hr class="mt-0 mb-4">
                 <form method="GET" action=".">
                     <div class="form-check my-3 ms-3">
+                        <input class="form-check-input" name="zip" type="checkbox" id="flexCheckDefault" {% if 'zip' in checked %} checked {% endif %}>
+                        <label class="form-check-label" for="flexCheckDefault">JOBS NEAR ME</label>
+                    </div>
+                    <div class="form-check my-3 ms-3">
                         <input class="form-check-input" name="LWN" type="checkbox" id="flexCheckDefault" {% if 'LWN' in checked %} checked {% endif %}/>
                         <label class="form-check-label" for="flexCheckDefault">LWN - LAWN CARE</label>
                     </div>
