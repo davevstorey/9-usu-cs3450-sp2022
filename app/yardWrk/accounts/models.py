@@ -13,7 +13,7 @@ class CustomUser(AbstractUser):
     phone = PhoneNumberField()
 
     # form of wallet/balance (Integer Representation)
-    # balance = models.IntegerField()
+    wallet = models.IntegerField(default=0)
 
     def __str__(self):
         return self.username

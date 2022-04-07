@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
@@ -28,29 +29,53 @@ def home(request):
 
 @login_required(login_url='/accounts/login')
 def CustomerDashboard(request):
-    # Grab the customer that is tied to the logged in user
-    currentUserCustomerProfile = request.user.customer
-    review_list = Review.objects.filter(reviewee=request.user).exclude(isCustomer_bool = False)
 
-    
-    pending_jobs = Job.objects.filter(customer=currentUserCustomerProfile).filter(available=True).filter(completed=False)
-    progressing_jobs = Job.objects.filter(customer=currentUserCustomerProfile).filter(available=False).filter(completed=False)
-    completed_jobs = Job.objects.filter(customer=currentUserCustomerProfile).filter(completed=True)
+    if request.method == 'POST':
+        user = request.user
+        if(request.POST.get("Add")):
+            sumToAdd = int(request.POST.get("Add"))
+            user.wallet += sumToAdd
+        elif(request.POST.get("Withdraw")):
+            sumToSub = int(request.POST.get("Withdraw"))
+            if (user.wallet >= sumToSub):
+                user.wallet -= sumToSub
+        user.save()
+        return redirect('/yardsite/customer')
+    else:
+        # Grab the customer that is tied to the logged in user
+        currentUserCustomerProfile = request.user.customer
+        review_list = Review.objects.filter(reviewee=request.user).exclude(isCustomer_bool = False)
 
-    context = {
-        'pending_jobs': pending_jobs,
-        'progressing_jobs': progressing_jobs,
-        'completed_jobs': completed_jobs,
-        'customerReviews': review_list
-    }
+        
+        pending_jobs = Job.objects.filter(customer=currentUserCustomerProfile).filter(available=True).filter(completed=False)
+        progressing_jobs = Job.objects.filter(customer=currentUserCustomerProfile).filter(available=False).filter(completed=False)
+        completed_jobs = Job.objects.filter(customer=currentUserCustomerProfile).filter(completed=True)
 
-    return render(request, 'yardSite/customerDashboard.html', context)
+        context = {
+            'pending_jobs': pending_jobs,
+            'progressing_jobs': progressing_jobs,
+            'completed_jobs': completed_jobs,
+            'customerReviews': review_list,
+            'currentCustomer' : currentUserCustomerProfile,
+        }
+        return render(request, 'yardSite/customerDashboard.html', context)
 
 @login_required(login_url='/accounts/login')
 def WorkerDashboard(request):
     w_user = request.user
     w_name = w_user.get_full_name()
     worker = w_user.worker
+    wallet = w_user.wallet
+
+    if request.method == 'POST':
+        user = request.user
+        if(request.POST.get("Withdraw")):
+            sumToSub = int(request.POST.get("Withdraw"))
+            if (user.wallet >= sumToSub):
+                user.wallet -= sumToSub
+        user.save()
+        return redirect('/yardsite/worker')
+
     # Gets available jobs that weren't posted by this user
     #available_jobs = Job.objects.filter(available=True).filter(completed=False).exclude(customer=w_user.customer)
     review_list = Review.objects.filter(reviewee=w_user).exclude(isCustomer_bool = True)
@@ -62,7 +87,8 @@ def WorkerDashboard(request):
         'assigned': job_list,
         #'available': available_jobs,
         'completed': completed_job_list,
-        'workerReviews': review_list
+        'workerReviews': review_list,
+        'wallet' : wallet,
     }
     return render(request, 'yardSite/workerDashboard.html', context)
 
@@ -106,9 +132,23 @@ def finish_job(request, job_id):
     completed_job = Job.objects.filter(id=job_id)[0]
 
     completed_job.completed = True
-    completed_job.save()
 
-    # Add logic for payment here
+    workerUser = CustomUser.objects.get(id=completed_job.worker.user.id)
+    customerUser = CustomUser.objects.get(id=completed_job.customer.user.id)
+
+    # Calculate the different cuts
+    totalReward = int(completed_job.cash_reward)
+    ownerCut = totalReward * 0.1
+    workerCut = totalReward - ownerCut
+
+    # Add or subtract cuts from the appropriate users
+    workerUser.wallet += workerCut
+    customerUser.user.wallet -= totalReward
+
+    # Save changes
+    workerUser.save()
+    customerUser.save()
+    completed_job.save()
 
     context = {
         'job': completed_job
