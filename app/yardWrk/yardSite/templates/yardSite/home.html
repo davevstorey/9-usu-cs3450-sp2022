@@ -6,7 +6,7 @@
     <div class="container-fluid vh-100 w-100">
         <div class="row vh-100">
             <div class="col-10">
-                <h1>Available Jobs</h1>
+                <h1>Available Jobs - {{ queryset.count }}</h1>
                 <hr class="mt-0 mb-4">
                 <div class="row row-cols-1 row-cols-md-6 g-4">
                     {% for job in queryset %}
@@ -15,7 +15,7 @@
                                 <div class="card-header">{{ job.job_type }}</div>
                                 <div class="card-body">
                                     <h5 class="card-title">${{ job.cash_reward }}</h5>
-                                    <p class="card-text">{{ job.description }}</p>
+                                    <p class="card-text">{{ job.preview_description }}</p>
                                 </div>
                                 <a href="{% url 'yardSite:ownedJobDetails' job.id %}"><button class="btn btn-outline-primary w-100" href="">Details</button></a>
                             </div>
@@ -27,6 +27,10 @@
                 <h1 class="ms-3">Filter Jobs</h1>
                 <hr class="mt-0 mb-4">
                 <form method="GET" action=".">
+                    <div class="form-check my-3 ms-3">
+                        <input class="form-check-input" name="zip" type="checkbox" id="flexCheckDefault" {% if 'zip' in checked %} checked {% endif %}>
+                        <label class="form-check-label" for="flexCheckDefault">JOBS NEAR ME</label>
+                    </div>
                     <div class="form-check my-3 ms-3">
                         <input class="form-check-input" name="LWN" type="checkbox" id="flexCheckDefault" {% if 'LWN' in checked %} checked {% endif %}/>
                         <label class="form-check-label" for="flexCheckDefault">LWN - LAWN CARE</label>

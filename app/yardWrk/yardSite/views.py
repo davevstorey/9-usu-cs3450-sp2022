@@ -12,18 +12,23 @@ from .forms import ReviewPostForm
 def empty(request):
     return redirect('/yardsite/home')
 
+@login_required(login_url='/accounts/login')
 def home(request):
-    qs = Job.objects.all().filter(available=True)
     filters = []
     checked = []
-    for type,name in Job.JOB_TYPES:
-        if request.GET.get(type) != 'on':
-            filters.append(type)
+    qs = Job.objects.all().filter(available=True)
+    for job_type,name in Job.JOB_TYPES:
+        if request.GET.get(job_type) != 'on':
+            filters.append(job_type)
         else:
-            checked.append(type)
+            checked.append(job_type)
     if len(checked) > 0:
         for filter in filters:
             qs = qs.exclude(job_type=filter)
+
+    if request.GET.get('zip') == 'on':
+        qs = qs.filter(zip_code=request.user.zip_code)
+        checked.append('zip')
 
     return render(request, 'yardSite/home.html', { 'queryset': qs, 'checked': checked })
 
@@ -194,6 +199,7 @@ def editJob(request, job_id):
 
     return render(request, 'yardSite/editJob.html', context)
 
+@login_required(login_url='/accounts/login')
 def customer_create_review_post(request, job_id):
     requested_job = Job.objects.filter(id=job_id)[0]
 
@@ -215,6 +221,7 @@ def customer_create_review_post(request, job_id):
         form = ReviewPostForm(instance=requested_job)
     return render(request, 'yardsite/create-review-post.html', { 'form': form })
 
+@login_required(login_url='/accounts/login')
 def create_review_post(request, job_id):
     requested_job = Job.objects.filter(id=job_id)[0]
 
@@ -236,6 +243,7 @@ def create_review_post(request, job_id):
         form = ReviewPostForm(instance=requested_job)
     return render(request, 'yardsite/create-review-post.html', { 'form': form })
 
+@login_required(login_url='/accounts/login')
 def editReview(request, review_id):
     requested_review = Job.objects.filter(id=job_id)[0]
 
@@ -256,6 +264,7 @@ def editReview(request, review_id):
 
     return render(request, 'yardSite/editReview.html', context)
 
+@login_required(login_url='/accounts/login')
 def OwnedReviewDetails(request, review_id):
     requested_review = Review.objects.filter(id=review_id)[0]
 
@@ -266,6 +275,7 @@ def OwnedReviewDetails(request, review_id):
 
     return render(request, 'yardSite/ownedReviewDetails.html', context)
 
+@login_required(login_url='/accounts/login')
 def SentReviewDetails(request, review_id):
     requested_review = Review.objects.filter(id=review_id)[0]
 
