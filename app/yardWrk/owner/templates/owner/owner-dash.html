@@ -5,12 +5,35 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+
+<div>
+    <h1 class="mt-2">Wallet</h1>
+    <p>${{ ownerUser.wallet }}</p>
+    <form method="post" class="form-group">
+        {% csrf_token %}
+        $<input type="number" name="Add" value="0" min="0"></input>
+        <button type="submit" class="btn btn-success">Add Funds</button>
+    </form>
+    <br>
+    <form method="post" class="form-group">
+        {% csrf_token %}
+        $<input type="number" name="Withdraw" value="0" min="0"></input>
+        <button type="submit" class="btn btn-success">Withdraw Funds</button>
+    </form>
+</div>
+
 <div>
     <h1 class="mt-2">Owner Dashboard</h1>
     <hr class="mt-0 mb-4">
     
     <a href="{% url 'owner:owner_add_delete_jobs' %}">
         <button class="mt-2 btn btn-primary">See all jobs</button>
+    </a>
+</div>
+
+<div>
+    <a href="{% url 'owner:owner_edit_account_ballances' %}">
+        <button class="mt-2 btn btn-primary">Edit Account Ballances</button>
     </a>
 </div>
 {% endblock %}

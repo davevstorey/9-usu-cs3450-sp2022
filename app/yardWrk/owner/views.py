@@ -6,7 +6,24 @@ from yardSite.models import Job
 
 def owner_dashboard(request):
     # Temporary Code for testing purposes (change when we have actual dashboard)
-    return render(request, 'owner/owner-dash.html', {})
+    user = request.user
+    # Adding/Removing Funds for Owner
+    if request.method == 'POST':
+        if(request.POST.get("Add")):
+            sumToAdd = int(request.POST.get("Add"))
+            user.wallet += sumToAdd
+        elif(request.POST.get("Withdraw")):
+            sumToSub = int(request.POST.get("Withdraw"))
+            if (user.wallet >= sumToSub):
+                user.wallet -= sumToSub
+        user.save()
+        return redirect('/owner/dashboard')
+
+    context = {
+        'ownerUser' : user,
+    }
+
+    return render(request, 'owner/owner-dash.html', context)
 
 
 def owner_add_delete_jobs(request):
@@ -28,3 +45,7 @@ def owner_del_job(request, job_id):
     Job.objects.filter(id=job_id)[0].delete()
 
     return redirect('/owner/dashboard/jobs')
+
+def owner_edit_account_balances(request):
+
+    return render(request, 'owner/owner-edit-account-ballances.html')
