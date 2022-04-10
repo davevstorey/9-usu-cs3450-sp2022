@@ -1,1 +1,19 @@
-<p>MONEY<p>
+{% extends "yardSite/base.html" %}
+
+{% block title %} Edit Account Ballances {% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div>
+    <p>Accounts:</p>
+    {% for account in allAccounts %}
+        <div>
+            <p>{{account.username}}</p>
+        </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

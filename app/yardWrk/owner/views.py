@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 
 from yardSite.models import Job
+from accounts.models import CustomUser
 
 # Create your views here.
 
@@ -47,5 +48,11 @@ def owner_del_job(request, job_id):
     return redirect('/owner/dashboard/jobs')
 
 def owner_edit_account_balances(request):
+    # Grab all accounts besides owner.
+    #TODO: Avoid grabbing owner.
+    allAccounts = CustomUser.objects.all()
 
-    return render(request, 'owner/owner-edit-account-ballances.html')
+    context = {
+        'allAccounts' : allAccounts
+    }
+    return render(request, 'owner/owner-edit-account-ballances.html', context)
