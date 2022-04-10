@@ -55,4 +55,22 @@ def owner_edit_account_balances(request):
     context = {
         'allAccounts' : allAccounts
     }
-    return render(request, 'owner/owner-edit-account-ballances.html', context)
+    return render(request, 'owner/owner-edit-account-balances.html', context)
+
+def owner_edit_specific_account(request, user_id):
+    specificUser = CustomUser.objects.get(id=user_id)
+    if request.method == 'POST':
+            if(request.POST.get("Add")):
+                sumToAdd = int(request.POST.get("Add"))
+                specificUser.wallet += sumToAdd
+            elif(request.POST.get("Withdraw")):
+                sumToSub = int(request.POST.get("Withdraw"))
+                if (specificUser.wallet >= sumToSub):
+                    specificUser.wallet -= sumToSub
+            specificUser.save()
+            return redirect('owner:owner_edit_specific_account', user_id)
+
+    context = {
+        'account' : specificUser
+    }
+    return render(request, 'owner/owner-edit-specific-account.html', context)
