@@ -140,6 +140,7 @@ def finish_job(request, job_id):
 
     workerUser = CustomUser.objects.get(id=completed_job.worker.user.id)
     customerUser = CustomUser.objects.get(id=completed_job.customer.user.id)
+    ownerUser = CustomUser.objects.get(is_superuser=True)
 
     # Calculate the different cuts
     totalReward = int(completed_job.cash_reward)
@@ -148,11 +149,14 @@ def finish_job(request, job_id):
 
     # Add or subtract cuts from the appropriate users
     workerUser.wallet += workerCut
-    customerUser.user.wallet -= totalReward
+    customerUser.wallet -= totalReward
+    if(ownerUser):
+        ownerUser.wallet += ownerCut
 
     # Save changes
     workerUser.save()
     customerUser.save()
+    ownerUser.save()
     completed_job.save()
 
     context = {

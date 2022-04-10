@@ -49,8 +49,7 @@ def owner_del_job(request, job_id):
 
 def owner_edit_account_balances(request):
     # Grab all accounts besides owner.
-    #TODO: Avoid grabbing owner.
-    allAccounts = CustomUser.objects.all()
+    allAccounts = CustomUser.objects.filter(is_superuser=False)
 
     context = {
         'allAccounts' : allAccounts
