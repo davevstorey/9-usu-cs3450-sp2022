@@ -52,7 +52,7 @@ Navigate to yardWrk
 
 For accessing the owner account, log in with username: owner , and password: password .
 
-    Afterwords you have the ability to change account information from inside the app.
+Afterwords you have the ability to change account information from inside the app.
 
 ## System Testing Instructions
 
