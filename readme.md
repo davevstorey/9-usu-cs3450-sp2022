@@ -48,6 +48,12 @@ Navigate to yardWrk
 
     http://127.0.0.1:8000/yardsite/
 
+## Accessing the owner account.
+
+For accessing the owner account, log in with username: owner , and password: password .
+
+    Afterwords you have the ability to change account information from inside the app.
+
 ## System Testing Instructions
 
 For system testing, launch the app in the browser. You'll be able to navigate around the site and test it as any actor. You can go to the docs folder and find the SystemTesting document. That will have detailed tests and the requirements they fulfill.
