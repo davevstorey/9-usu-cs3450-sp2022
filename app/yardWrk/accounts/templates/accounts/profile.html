@@ -74,14 +74,21 @@
                     <form>
                         <div class="form-group">
                             <label for="balance">Available Balance</label>
-                            <input type="text" class="form-control input-lg" id="id-balance" value="{{ user.wallet }}" readonly>
+                            <input type="text" class="form-control input-lg" id="id-balance" value="${{ user.wallet }}" readonly>
                         </div>
                     </form>
                 </div>
-                <div class="mt-2 btn-group">
-                    <a href="#" class="btn btn-outline-primary">Add Funds</a>
-                    <a href="#" class="btn btn-outline-dark">Withdraw Funds</a>
-                </div>
+                <form method="post" class="form-group">
+                    {% csrf_token %}
+                    $<input type="number" name="Add" value="0" min="0"></input>
+                    <button type="submit" class="btn btn-success">Add Funds</button>
+                </form>
+                <br>
+                <form method="post" class="form-group">
+                    {% csrf_token %}
+                    $<input type="number" name="Withdraw" value="0" min="0"></input>
+                    <button type="submit" class="btn btn-success">Withdraw Funds</button>
+                </form>
             </div>
         </div>
     </div>
