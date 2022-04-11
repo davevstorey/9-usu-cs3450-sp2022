@@ -1,0 +1,28 @@
+{% extends "yardSite/base.html" %}
+
+{% block title %} Edit Account Balances {% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h1>Accounts:</h1>
+<div class="row row-cols-1 row-cols-md-6 g-4">
+    {% for account in allAccounts %}
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-header">{{ account.username }}</div>
+                <div class="card-body">
+                    <h5 class="card-title">Name: {{account.first_name}} {{account.last_name}}</h5>
+                    <p class="card-text">Current Balance: ${{account.wallet}}</p>
+                    <a href="{% url 'owner:owner_edit_specific_account' account.id %}"><button class="btn btn-outline-primary w-100" href="">Edit Balance</button></a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<a href="{% url 'owner:owner_dashboard' %}">
+    <button class="btn btn-primary">Exit</button>
+</a>
+
+{% endblock %}
