@@ -12,6 +12,7 @@ def populate_users(apps, schema_editor):
 
     User = apps.get_model('accounts', 'CustomUser')
     Customer = apps.get_model('yardSite', 'Customer')
+    Worker = apps.get_model('yardSite', 'Worker')
     for i in range(USER_COUNT):
         user = User(
             username = f'user-{i}',
@@ -29,8 +30,8 @@ def populate_users(apps, schema_editor):
     for user in User.objects.all():
         customer = Customer(user=user)
         customer.save()
-
-
+        worker = Worker(user=user)
+        worker.save()
 class Migration(migrations.Migration):
 
     dependencies = [
