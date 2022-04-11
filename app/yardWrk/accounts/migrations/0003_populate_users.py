@@ -32,6 +32,7 @@ def populate_users(apps, schema_editor):
         customer.save()
         worker = Worker(user=user)
         worker.save()
+        
 class Migration(migrations.Migration):
 
     dependencies = [
