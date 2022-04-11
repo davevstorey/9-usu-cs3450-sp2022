@@ -17,6 +17,7 @@ def home(request):
     filters = []
     checked = []
     qs = Job.objects.all().filter(available=True)
+    """
     for job_type,name in Job.JOB_TYPES:
         if request.GET.get(job_type) != 'on':
             filters.append(job_type)
@@ -25,11 +26,11 @@ def home(request):
     if len(checked) > 0:
         for filter in filters:
             qs = qs.exclude(job_type=filter)
-
+    """
     if request.GET.get('zip') == 'on':
         qs = qs.filter(zip_code=request.user.zip_code)
         checked.append('zip')
-
+    
     return render(request, 'yardSite/home.html', { 'queryset': qs, 'checked': checked })
 
 @login_required(login_url='/accounts/login')

@@ -16,38 +16,25 @@ class Customer(models.Model):
 		primary_key=True,
 	)
 
+class JobType(models.Model):
+    name = models.CharField(max_length=10)
+    description = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
 
 class Job(models.Model):
     # Decided on three character codes for internal job representation
     # These are some that I came up with. Definitely add more as you
     # see fit!
-    LAWN_CARE = 'LWN'
-    SNOW_REMOVAL = 'SNW'
-    PET_CARE = 'PET'
-    LANDSCAPING = 'LND'
-    AUTOMOTIVE = 'AUT'
-    GARDENING = 'GAR'
-    MOVING = 'MOV'
-    DECORATION = 'CDN'
-    JOB_TYPES = (
-        (LAWN_CARE, 'Lawn Care'),
-        (LANDSCAPING, 'Landscaping'),
-        (GARDENING, 'Gardening/Plant Cultivation'),
-        (SNOW_REMOVAL, 'Snow Removal'),
-        (PET_CARE, 'Pet Care'),
-        (AUTOMOTIVE, 'Automotive'),
-        (MOVING, 'Moving Services'),
-        (DECORATION, 'Decoration'),
-    )
-
+    
     name = models.CharField(max_length=24)
 
     description = models.CharField(max_length=200)
 
     # No id field needed, Django ORM handles this
 
-    job_type = models.CharField(max_length=3, choices=JOB_TYPES)
+    job_type = models.ForeignKey('JobType', on_delete=models.CASCADE)
 
     # Decide on whether this should be an integer or float field
     cash_reward = models.IntegerField()
