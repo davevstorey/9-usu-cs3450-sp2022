@@ -1,11 +1,14 @@
 from django.shortcuts import redirect, render
 
-from yardSite.models import Job
+from .forms import JobTypePostForm
+
+from yardSite.models import Job, JobType
 from accounts.models import CustomUser
 
 # Create your views here.
 
 def owner_dashboard(request):
+    job_types = JobType.objects.all()
     # Temporary Code for testing purposes (change when we have actual dashboard)
     user = request.user
     # Adding/Removing Funds for Owner
@@ -22,6 +25,7 @@ def owner_dashboard(request):
 
     context = {
         'ownerUser' : user,
+        'types' : job_types,
     }
 
     return render(request, 'owner/owner-dash.html', context)
@@ -55,6 +59,18 @@ def owner_edit_account_balances(request):
         'allAccounts' : allAccounts
     }
     return render(request, 'owner/owner-edit-account-balances.html', context)
+
+def owner_add_job_type(request):
+    if request.method == 'POST':
+        form = JobTypePostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/owner/dashboard')
+        else: 
+            print(form.errors)
+    else:
+        form = JobTypePostForm()
+    return render(request, 'owner/owner-add-job-type.html', { 'form': form })
 
 def owner_edit_specific_account(request, user_id):
     specificUser = CustomUser.objects.get(id=user_id)

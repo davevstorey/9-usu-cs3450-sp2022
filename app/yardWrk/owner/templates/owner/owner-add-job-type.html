@@ -1,0 +1,16 @@
+{% extends "yardSite/base.html" %}
+
+{% block title %} Add Job Type {% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h1 class="mt-2">Add Job Type</h1>
+    <hr class="mt-0 mb-4">
+    <form method="post" class="form-group">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="mt-2 btn btn-outline-primary">Post</button>
+        <button class="mt-2 btn btn-outline-danger" onclick="history.back()">Cancel</button>
+    </form>
+{%endblock%}

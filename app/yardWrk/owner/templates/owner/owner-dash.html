@@ -30,4 +30,31 @@
         <button class="mt-2 btn btn-primary">Edit Account Balances</button>
     </a>
 </div>
+
+<div>
+    <h1 class="mt-2">Current Job Types</h1>
+    <hr class="mt-0 mb-4">
+    {% if types %}
+        <div class="row row-cols-1 row-cols-md-6 g-4">
+            {% for jobtype in types %}
+                <div class="col">
+                    <div class="card text-center">
+                        <div class="card-header">{{ jobtype.name }}</div>
+                        <div class="card-body">
+                            <p class="card-text">{{ jobtype.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No Jobs have been posted</p>
+    {% endif %}
+</div>
+
+<div>
+    <a href="{% url 'owner:owner_add_job_type' %}">
+        <button class="mt-2 btn btn-primary">Add New Job Type</button>
+    </a>
+</div>
 {% endblock %}

@@ -9,4 +9,5 @@ urlpatterns = [
     path('dashboard/jobs/<int:job_id>/remove', views.owner_del_job, name="owner_del_job"),
     path('dashboard/editBalances', views.owner_edit_account_balances, name='owner_edit_account_balances'),
     path('dashboard/editBalances/<int:user_id>', views.owner_edit_specific_account, name='owner_edit_specific_account'),
+    path('dashboard/add_job_type', views.owner_add_job_type, name="owner_add_job_type"),
 ]

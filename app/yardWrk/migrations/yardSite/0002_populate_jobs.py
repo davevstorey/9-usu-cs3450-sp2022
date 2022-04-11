@@ -10,16 +10,33 @@ import lorem
 def populate_jobs(apps, schema_editor):
     JOB_COUNT = 4
 
-    job_types = ['LWN','SNW','PET','LND','AUT','GAR','MOV']
-
     User = apps.get_model('accounts', 'CustomUser')
     Job = apps.get_model('yardSite', 'Job')
+    JobType = apps.get_model('yardSite', 'JobType')
+    
+    lwn = JobType(name='Lawncare', description='Lawn mowing, weed eating, mulching, etc.')
+    lwn.save()
+    snw = JobType(name='Snow Removal', description='Removing snow from walkways, driveways, etc.')
+    snw.save()
+    pet = JobType(name='Pet Care', description='Taking care of pets')
+    pet.save()
+    lnd = JobType(name='Landscaping', description='Landscaping work')
+    lnd.save()
+    aut = JobType(name='Automotive', description='Working on cars, motorcycles, ATVs, and anything else with an engine')
+    aut.save()
+    gar = JobType(name='Gardening', description='Cultivating plants')
+    gar.save()
+    mov = JobType(name='Moving', description='Moving belongings from one location to another')
+    mov.save()
+    det = JobType(name='Decoration', description='Putting up decorations')
+    det.save()
+    
     for user in User.objects.all().exclude(username='owner'):
         for i in range(JOB_COUNT):
             job = Job(
                 name = f'{user.first_name} {user.last_name}',
                 description = lorem.paragraph(),
-                job_type = random.choice(job_types),
+                job_type = random.choice(JobType.objects.all()),
                 cash_reward = 99,
                 customer = user.customer,
                 date_to_be_finished_by = timezone.now() + timezone.timedelta(days=2),
