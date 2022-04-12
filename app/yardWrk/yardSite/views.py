@@ -60,7 +60,12 @@ def CustomerDashboard(request):
     # Grab the customer that is tied to the logged in user
     currentUserCustomerProfile = request.user.customer
     review_list = Review.objects.filter(reviewee=request.user).exclude(isCustomer_bool = False)
-    
+    yourReview_list = Review.objects.filter(reviewer=request.user)
+
+    completed_job_list2 = Job.objects.filter(customer=request.user.customer).filter(completed=True)
+    for i in yourReview_list:
+        completed_job_list2 = completed_job_list2.exclude(review = i)
+
     
     pending_jobs = Job.objects.filter(customer=currentUserCustomerProfile).filter(available=True).filter(completed=False)
     progressing_jobs = Job.objects.filter(customer=currentUserCustomerProfile).filter(available=False).filter(completed=False)
@@ -69,6 +74,7 @@ def CustomerDashboard(request):
     context = {
         'pending_jobs': pending_jobs,
         'progressing_jobs': progressing_jobs,
+        'c2': completed_job_list2,
         'completed_jobs': completed_jobs,
         'customerReviews': review_list,
         'currentCustomer' : currentUserCustomerProfile,
@@ -84,14 +90,19 @@ def WorkerDashboard(request):
 
     # Gets available jobs that weren't posted by this user
     review_list = Review.objects.filter(reviewee=w_user).exclude(isCustomer_bool = True)
+    yourReview_list = Review.objects.filter(reviewer=w_user)
     available_jobs = Job.objects.filter(available=True).filter(completed=False).exclude(customer=w_user.customer)
-
     
     job_list = Job.objects.filter(worker=worker).filter(completed=False)
     completed_job_list = Job.objects.filter(worker=worker).filter(completed=True)
+    completed_job_list2 = Job.objects.filter(worker=worker).filter(completed=True)
+    for i in yourReview_list:
+        completed_job_list2 = completed_job_list2.exclude(review = i)
+
     context = {
         'name': w_name,
         'assigned': job_list,
+        'c2': completed_job_list2,
         'completed': completed_job_list,
         'workerReviews': review_list,
         'wallet' : wallet,
