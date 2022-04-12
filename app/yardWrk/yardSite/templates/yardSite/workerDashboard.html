@@ -41,7 +41,8 @@
                                 <h5 class="card-title">${{ job.cash_reward }}</h5>
                                 <p class="card-text">{{ job.preview_description }}</p>
                             </div>
-                            <a href="{% url 'yardSite:ownedJobDetails' job.id %}"><button class="btn btn-outline-primary w-100" href="">Details</button></a>
+			    <a href="{% url 'yardSite:ownedJobDetails' job.id %}"> <button class="btn btn-outline-primary w-100" href="">Details</button></a>
+		    	    <a href="{% url 'yardSite:customerCreateReview' job.id %}"><button class="btn btn-outline-primary w-100" href="">Leave a review</button></a>
                         </div>
                     </div>
                 {% endfor %}
@@ -62,9 +63,9 @@
                           <div class="card-body">
                             <p class="card-text">{{ review.job.description}}</li>
                             <p class="card-text">received a {{ review.rating_num }} star rating</p>
-			                      <p class="card-text"> {{ review.review_text }}</p>
+			    <p class="card-text"> {{ review.review_text }}</p>
                         </div>
-			                  <a href="{% url 'yardSite:ownedReviewDetails' review.id %}">
+			<a href="{% url 'yardSite:ownedReviewDetails' review.id %}">
                             <button class="btn btn-primary" style="margin-bottom: 10px;">Details</button>
                         </a>
                     </div>
