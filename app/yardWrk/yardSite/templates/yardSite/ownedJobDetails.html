@@ -3,7 +3,6 @@
 {% block title %} Job Details {% endblock %}
 
 {% block content %}
-    {{ job }}
     
     <div>
         <ul>
@@ -17,25 +16,50 @@
             <li>Expected Completion Date: {{ job.date_to_be_finished_by }}</li>
         </ul>
         {% if job.available %}
-            {% if can_edit %}
-                <a href="{% url 'yardSite:editJob' job.id %}">
-                    <button class="mt-2 btn btn-outline-primary">Edit</button>
-                </a>
-            {% endif %}
+            <a href="{% url 'yardSite:editJob' job.id %}">
+                <button class="btn btn-primary">Edit</button>
+            </a>
             {% if can_assign %}
-                <a href="{% url 'yardSite:acceptedJob' job.id %}">
-                    <button class="mt-2 btn btn-outline-primary">Take Job</button>
-                </a>
+            <a href="{% url 'yardSite:acceptedJob' job.id %}">
+                <button class="btn btn-primary">Take Job</button>
+            </a>
             {% endif %}
         {% else %}
             {% if not job.completed %}
-                {% if can_assign %}
-                    <a href="{% url 'yardSite:finishJob' job.id %}">
-                        <button class="mt-2 btn btn-outline-primary">Record Completion</button>
-                    </a>
-                {% endif %}
+                <a href="{% url 'yardSite:finishJob' job.id %}">
+                    <button class="btn btn-primary">Record Completion</button>
+                </a>
             {% endif %}
         {% endif %}
-        <button class="mt-2 btn btn-outline-primary" onclick="history.back()">Back</button>
+
     </div>
+
+    {% if receivedReview %}
+    	<div>
+	    {% for review in receivedReview %}
+	    	<h2> You received a review </h2>
+            	<ul>
+	    	    <li>Date Posted: {{ review.published_date }} </li>
+	            <li>Review: {{ review.review_text }} </li>
+	       	    <li>Received a {{ review.rating_num }} star rating.</li>
+             	</ul>
+	    {% endfor %}
+    	</div>
+    {% endif %}
+
+
+    {% if yourReview %}
+    	<div>
+	    {% for review in yourReview %}
+	    	<h2> You sent a review </h2>
+            	<ul>
+	    	    <li>Date Posted: {{ review.published_date }} </li>
+	    	    <li>Review: {{ review.review_text }} </li>
+	    	    <li>Received a {{ review.rating_num }} star rating.</li>
+            	</ul>
+	    {% endfor %}
+    	</div>
+    {% endif %}
+
+
 {% endblock %}
