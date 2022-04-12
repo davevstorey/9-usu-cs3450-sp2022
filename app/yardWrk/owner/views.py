@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render
+from django.contrib.auth.decorators import login_required
 
 from .forms import JobTypePostForm
 
@@ -7,6 +8,7 @@ from accounts.models import CustomUser
 
 # Create your views here.
 
+@login_required(login_url='/accounts/login')
 def owner_dashboard(request):
     job_types = JobType.objects.all()
     # Temporary Code for testing purposes (change when we have actual dashboard)
@@ -18,12 +20,13 @@ def owner_dashboard(request):
 
     return render(request, 'owner/owner-dash.html', context)
 
-
+@login_required(login_url='/accounts/login')
 def owner_add_delete_jobs(request):
     all_jobs = Job.objects.all()
 
     return render(request, 'owner/owner-add-del-jobs.html', { 'all_jobs': all_jobs })
 
+@login_required(login_url='/accounts/login')
 def owner_job_details(request, job_id):
     requested_job = Job.objects.filter(id=job_id)[0]
 
@@ -33,12 +36,14 @@ def owner_job_details(request, job_id):
 
     return render(request, 'owner/owner-job-details.html', context)
 
+@login_required(login_url='/accounts/login')
 def owner_del_job(request, job_id):
     # Delete Job
     Job.objects.filter(id=job_id)[0].delete()
 
     return redirect('/owner/dashboard/jobs')
 
+@login_required(login_url='/accounts/login')
 def owner_edit_account_balances(request):
     # Grab all accounts besides owner.
     allAccounts = CustomUser.objects.filter(is_superuser=False)
@@ -48,6 +53,7 @@ def owner_edit_account_balances(request):
     }
     return render(request, 'owner/owner-edit-account-balances.html', context)
 
+@login_required(login_url='/accounts/login')
 def owner_add_job_type(request):
     if request.method == 'POST':
         form = JobTypePostForm(request.POST)
@@ -60,6 +66,7 @@ def owner_add_job_type(request):
         form = JobTypePostForm()
     return render(request, 'owner/owner-add-job-type.html', { 'form': form })
 
+@login_required(login_url='/accounts/login')
 def owner_edit_specific_account(request, user_id):
     specificUser = CustomUser.objects.get(id=user_id)
     if request.method == 'POST':

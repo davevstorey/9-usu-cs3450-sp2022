@@ -18,21 +18,23 @@ def home(request):
     filters = []
     checked = []
     qs = Job.objects.all().filter(available=True)
-    """
-    for job_type,name in Job.JOB_TYPES:
-        if request.GET.get(job_type) != 'on':
-            filters.append(job_type)
-        else:
-            checked.append(job_type)
-    if len(checked) > 0:
-        for filter in filters:
-            qs = qs.exclude(job_type=filter)
-    """
-    if request.GET.get('zip') == 'on':
-        qs = qs.filter(zip_code=request.user.zip_code)
-        checked.append('zip')
+    job_types = JobType.objects.all()
+
+    if request.GET.get('filter'):
+        for type in job_types:
+            if request.GET.get(type.name) != 'on':
+                filters.append(type)
+            else:
+                checked.append(type.name)
+        if len(checked) > 0:
+            for filter in filters:
+                qs = qs.exclude(job_type=filter)
+
+        if request.GET.get('zip') == 'on':
+            qs = qs.filter(zip_code=request.user.zip_code)
+            checked.append('zip')
     
-    return render(request, 'yardSite/home.html', { 'queryset': qs, 'checked': checked })
+    return render(request, 'yardSite/home.html', { 'queryset': qs, 'job_types': job_types, 'checked': checked })
 
 @login_required(login_url='/accounts/login')
 def CustomerDashboard(request):
