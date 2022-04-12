@@ -77,13 +77,12 @@
                             </div>
                             <a href="{% url 'yardSite:ownedJobDetails' job.id %}"><button class="btn btn-outline-primary w-100" href="">Details</button></a>
                         </div>
+		    	{% for i in c2 %}
+			    {% if i == job %}
+		   	    	<a href="{% url 'yardSite:customerCreateReview' job.id %}"><button class="btn btn-outline-primary w-100" href="">Leave a review</button></a>
+			    {% endif %}
+		    	{% endfor %}
                     </div>
-                    <a href="{% url 'yardSite:ownedJobDetails' job.id %}">
-                        <button class="btn btn-primary" style="margin-bottom: 10px;">Details</button>
-                    </a>
-		    <a href="{% url 'yardSite:customerCreateReview' job.id %}">
-            	    	<button class="btn btn-primary">Leave a review</button>
-        	    </a>
                 </div>
             {% endfor %}
         </div>
