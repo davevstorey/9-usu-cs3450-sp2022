@@ -11,7 +11,7 @@
                 <div class="row row-cols-1 row-cols-md-6 g-4">
                     {% for job in queryset %}
                         <div class="col">
-                            <div class="card text-center">
+                            <div class="card">
                                 <div class="card-header">{{ job.job_type }}</div>
                                 <div class="card-body">
                                     <h5 class="card-title">${{ job.cash_reward }}</h5>
@@ -42,8 +42,11 @@
                         <input type="submit" name="clear" value="Clear" class="btn btn-dark">
                     </div>
                 </form>
-                
             </div>
+	    <a href="{% url 'yardSite:sentReviews'%}">
+    	  	<button class="btn btn-primary" style="margin-bottom: 10px;">View a list of reviews you have created</button>
+    	    </a>
+
         </div>
     </div>
 {% endblock %}

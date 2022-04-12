@@ -14,7 +14,8 @@ urlpatterns = [
     path('<int:job_id>/finished', views.finish_job, name="finishJob"),
     path('<int:job_id>/createCustomerReview', views.create_review_post, name="createReview"),
     path('<int:job_id>/createWorkerReview', views.customer_create_review_post, name="customerCreateReview"),
+    path('sentReviews', views.SentReviews, name="sentReviews"),
     path('<int:review_id>/edit_review', views.editReview, name="editReview"),
-    path('<int:review_id>/sentReview', views.SentReviewDetails, name="sentReviewDetails"),
+    path('<int:review_id>/sentReviewDetails', views.SentReviewDetails, name="sentReviewDetails"),
     path('<int:review_id>/review', views.OwnedReviewDetails, name="ownedReviewDetails")
 ]

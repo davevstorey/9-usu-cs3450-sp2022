@@ -59,11 +59,14 @@
                 {% for review in workerReviews %}
                     <div class="card bg-light text-center">
                         <div class="card-header">{{ review.job.job_type}}</div>
-                        <div class="card-body">
+                          <div class="card-body">
                             <p class="card-text">{{ review.job.description}}</li>
-                            <p class="card-text">received a {{ review.rating_num }} rating</p>
-			                <p class="card-text"> {{ review.review_text }}</p>
+                            <p class="card-text">received a {{ review.rating_num }} star rating</p>
+			                      <p class="card-text"> {{ review.review_text }}</p>
                         </div>
+			                  <a href="{% url 'yardSite:ownedReviewDetails' review.id %}">
+                            <button class="btn btn-primary" style="margin-bottom: 10px;">Details</button>
+                        </a>
                     </div>
                 {% endfor %}
             </div>

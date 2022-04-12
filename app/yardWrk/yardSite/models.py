@@ -1,6 +1,7 @@
 import datetime
 from django.db import models
 from accounts.models import CustomUser
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Worker(models.Model):
 	user = models.OneToOneField(
@@ -8,6 +9,7 @@ class Worker(models.Model):
 		on_delete=models.CASCADE,
 		primary_key=True,
 	)
+
 
 class Customer(models.Model):
 	user = models.OneToOneField(
@@ -69,12 +71,23 @@ class Job(models.Model):
 class Review(models.Model):
     published_date = models.DateTimeField('date posted')
     review_text = models.CharField(max_length=400)
-    rating_num = models.IntegerField(default=3)
+    rating_num = models.IntegerField(
+            default=3,
+            validators=[
+                MinValueValidator(0),
+                MaxValueValidator(5)
+            ]
+    )
+
+
     redList_bool = models.BooleanField()
     reviewerName_text = models.CharField(max_length = 40)
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
-    reviewee = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    reviewee = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='reviewee')
+    reviewer = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='reviewer')
     isCustomer_bool = models.BooleanField()
 
     def __str__(self):
         return self.review_text
+
+

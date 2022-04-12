@@ -40,4 +40,30 @@
         {% endif %}
         <button class="btn btn-outline-dark fs-5" onclick="history.back()">Back</button>
     </div>    
+
+    {% if receivedReview %}
+    	<div>
+	    {% for review in receivedReview %}
+	    	<h2> You received a review </h2>
+            	<ul>
+	    	    <li>Date Posted: {{ review.published_date }} </li>
+	            <li>Review: {{ review.review_text }} </li>
+	       	    <li>Received a {{ review.rating_num }} star rating.</li>
+             	</ul>
+	    {% endfor %}
+    	</div>
+    {% endif %}
+
+    {% if yourReview %}
+    	<div>
+	    {% for review in yourReview %}
+	    	<h2> You sent a review </h2>
+          <ul>
+	    	    <li>Date Posted: {{ review.published_date }} </li>
+	    	    <li>Review: {{ review.review_text }} </li>
+	    	    <li>Received a {{ review.rating_num }} star rating.</li>
+          </ul>
+	    {% endfor %}
+    	</div>
+    {% endif %}
 {% endblock %}

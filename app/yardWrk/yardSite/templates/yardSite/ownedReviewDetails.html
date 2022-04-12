@@ -1,8 +1,17 @@
-<div>
-    <ul>
+{% extends "yardSite/base.html" %}
+
+{% block title %} Review Details {% endblock %}
+
+{% block content %}
+    {{ review }}
+    
+    <div>
+        <ul>
+	    <li>Job Description: {{ review.job.description }} </li>
 	    <li>Date Posted: {{ review.published_date }} </li>
 	    <li>Review: {{ review.review_text }} </li>
 	    <li>Rating: {{ review.rating_num }} </li>
-	    <li>RedListed?: {{ review.redList_bool }} </li>
-    </ul>
-</div>
+        </ul>
+    </div>
+
+{% endblock %}
