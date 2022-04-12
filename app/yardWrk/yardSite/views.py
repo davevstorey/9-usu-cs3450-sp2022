@@ -31,7 +31,7 @@ def CustomerDashboard(request):
     # Grab the customer that is tied to the logged in user
     currentUserCustomerProfile = request.user.customer
     review_list = Review.objects.filter(reviewee=request.user).exclude(isCustomer_bool = False)
-
+    
     
     pending_jobs = Job.objects.filter(customer=currentUserCustomerProfile).filter(available=True).filter(completed=False)
     progressing_jobs = Job.objects.filter(customer=currentUserCustomerProfile).filter(available=False).filter(completed=False)
@@ -52,8 +52,18 @@ def WorkerDashboard(request):
     w_name = w_user.get_full_name()
     worker = w_user.worker
     # Gets available jobs that weren't posted by this user
-    available_jobs = Job.objects.filter(available=True).filter(completed=False).exclude(customer=w_user.customer)
     review_list = Review.objects.filter(reviewee=w_user).exclude(isCustomer_bool = True)
+    redList = Review.objects.filter(reviewee = w_user).filter(redList_bool = True)
+    returnRedList = Review.objects.filter(reviewer = w_user).filter(redList_bool = True)
+    available_jobs = Job.objects.filter(available=True).filter(completed=False).exclude(customer=w_user.customer)
+    for i in redList:
+        cus = i.job.customer
+        available_jobs = available_jobs.exclude(customer = cus)
+
+    for j in returnRedList:
+        wor = i.job.worker
+        available_jobs = available_jobs.exclude(worker = wor)
+
     
     job_list = Job.objects.filter(worker=worker).filter(completed=False)
     completed_job_list = Job.objects.filter(worker=worker).filter(completed=True)
@@ -72,15 +82,17 @@ def OwnedJobDetails(request, job_id):
     currentUserCustomerProfile = request.user.customer
 
     can_assign_to_self = True
-    can_edit = False
     if requested_job.customer == currentUserCustomerProfile:
         can_assign_to_self = False
-        can_edit = True
-    # can_assign_to_self should only be True if the user is accessing the job as a worker. can_edit same
-    # except for as customer
+    
+    yourReviews =  Review.objects.filter(job = requested_job).filter(reviewer = request.user)
+    receivedReviews =  Review.objects.filter(job = requested_job).exclude(reviewer = request.user)
+
+
     context = {
         'can_assign': can_assign_to_self,
-        'can_edit': can_edit,
+        'receivedReview': receivedReviews,
+        'yourReview': yourReviews,
         'job': requested_job
     }
 
@@ -167,6 +179,7 @@ def customer_create_review_post(request, job_id):
             instance.published_date = datetime.datetime.now()
             instance.reviewee = requested_job.worker.user
             instance.isCustomer_bool = False
+            instance.reviewer = requested_job.customer.user
             instance.save()
             return redirect('/yardsite/home')
         else:
@@ -187,6 +200,7 @@ def create_review_post(request, job_id):
             instance.job = requested_job
             instance.published_date = datetime.datetime.now()
             instance.reviewee = requested_job.customer.user
+            instance.reviewer = requested_job.worker.user
             instance.isCustomer_bool = True
             instance.save()
             return redirect('/yardsite/home')
@@ -197,20 +211,20 @@ def create_review_post(request, job_id):
     return render(request, 'yardsite/create-review-post.html', { 'form': form })
 
 def editReview(request, review_id):
-    requested_review = Job.objects.filter(id=job_id)[0]
+    requested_review = Review.objects.filter(id=review_id)[0]
 
     if request.method == 'POST':
-        form = ReviewPostForm(request.POST, instance=requested_job)
+        form = ReviewPostForm(request.POST, instance=requested_review)
         if form.is_valid():
             form.save()
-            return redirect('/customer')
+            return redirect('/yardsite/sentReviews')
         else:
             print(form.errors)
     else:
         form = ReviewPostForm(instance=requested_review)
 
     context = {
-        'review': requested_job,
+        'review': requested_review,
         'form': form
     }
 
@@ -225,6 +239,15 @@ def OwnedReviewDetails(request, review_id):
     }
 
     return render(request, 'yardSite/ownedReviewDetails.html', context)
+
+def SentReviews(request):
+    r_reviews = Review.objects.filter(reviewer=request.user)
+
+    context = {
+        'reviews': r_reviews 
+    }
+
+    return render(request, 'yardSite/sentReviews.html', context)
 
 def SentReviewDetails(request, review_id):
     requested_review = Review.objects.filter(id=review_id)[0]
