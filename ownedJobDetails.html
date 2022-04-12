@@ -1,0 +1,65 @@
+{% extends "yardSite/base.html" %}
+
+{% block title %} Job Details {% endblock %}
+
+{% block content %}
+    
+    <div>
+        <ul>
+            <li>Job Name: {{ job.name }}</li>
+            <li>Job Description: {{ job.description }}</li>
+            <li>Job Type: {{ job.job_type }}</li>
+            <li>Job Reward: {{ job.cash_reward }}</li>
+            <li>Job Owner: {{ job.customer.user }}</li>
+            <li>Job Status: THIS MAY NEED SOME WORK IN DB</li>
+            <li>Assigned Worker: {{ job.worker.user }}</li>
+            <li>Expected Completion Date: {{ job.date_to_be_finished_by }}</li>
+        </ul>
+        {% if job.available %}
+            <a href="{% url 'yardSite:editJob' job.id %}">
+                <button class="btn btn-primary">Edit</button>
+            </a>
+            {% if can_assign %}
+            <a href="{% url 'yardSite:acceptedJob' job.id %}">
+                <button class="btn btn-primary">Take Job</button>
+            </a>
+            {% endif %}
+        {% else %}
+            {% if not job.completed %}
+                <a href="{% url 'yardSite:finishJob' job.id %}">
+                    <button class="btn btn-primary">Record Completion</button>
+                </a>
+            {% endif %}
+        {% endif %}
+
+    </div>
+
+    {% if receivedReview %}
+    	<div>
+	    {% for review in receivedReview %}
+	    	<h2> You received a review </h2>
+            	<ul>
+	    	    <li>Date Posted: {{ review.published_date }} </li>
+	            <li>Review: {{ review.review_text }} </li>
+	       	    <li>Received a {{ review.rating_num }} star rating.</li>
+             	</ul>
+	    {% endfor %}
+    	</div>
+    {% endif %}
+
+
+    {% if yourReview %}
+    	<div>
+	    {% for review in yourReview %}
+	    	<h2> You sent a review </h2>
+            	<ul>
+	    	    <li>Date Posted: {{ review.published_date }} </li>
+	    	    <li>Review: {{ review.review_text }} </li>
+	    	    <li>Received a {{ review.rating_num }} star rating.</li>
+            	</ul>
+	    {% endfor %}
+    	</div>
+    {% endif %}
+
+
+{% endblock %}

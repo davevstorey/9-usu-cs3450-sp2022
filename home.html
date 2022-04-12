@@ -1,0 +1,67 @@
+{% extends "accounts/base.html" %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+    <div class="container-fluid vh-100 w-100">
+        <div class="row vh-100">
+            <div class="col-10">
+                <h1>Available Jobs</h1>
+                <hr class="mt-0 mb-4">
+                <div class="row row-cols-1 row-cols-md-6 g-4">
+                    {% for job in queryset %}
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-header">{{ job.job_type }}</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">${{ job.cash_reward }}</h5>
+                                    <p class="card-text">{{ job.description }}</p>
+                                </div>
+                                <a href="{% url 'yardSite:ownedJobDetails' job.id %}"><button class="btn btn-outline-primary w-100" href="">Details</button></a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col">
+                <h1 class="ms-3">Filter Jobs</h1>
+                <hr class="mt-0 mb-4">
+                <form method="GET" action=".">
+                    <div class="form-check my-3 ms-3">
+                        <input class="form-check-input" name="LWN" type="checkbox" id="flexCheckDefault" {% if 'LWN' in checked %} checked {% endif %}/>
+                        <label class="form-check-label" for="flexCheckDefault">LWN - LAWN CARE</label>
+                    </div>
+                    <div class="form-check my-3 ms-3">
+                        <input class="form-check-input" name="LND" type="checkbox" id="flexCheckDefault" {% if 'LND' in checked %} checked {% endif %}/>
+                        <label class="form-check-label" for="flexCheckDefault">LND - LANDSCAPING</label>
+                    </div>
+                    <div class="form-check my-3 ms-3">
+                        <input class="form-check-input" name="GAR" type="checkbox" id="flexCheckDefault" {% if 'GAR' in checked %} checked {% endif %}/>
+                        <label class="form-check-label" for="flexCheckDefault">GAR - GARDENING</label>
+                    </div>
+                    <div class="form-check my-3 ms-3">
+                        <input class="form-check-input" name="SNW" type="checkbox" id="flexCheckDefault" {% if 'SNW' in checked %} checked {% endif %}/>
+                        <label class="form-check-label" for="flexCheckDefault">SNW - SNOW REMOVAL</label>
+                    </div>
+                    <div class="form-check my-3 ms-3">
+                        <input class="form-check-input" name="PET" type="checkbox" id="flexCheckDefault" {% if 'PET' in checked %} checked {% endif %}/>
+                        <label class="form-check-label" for="flexCheckDefault">PET - PET CARE</label>
+                    </div>
+                    <div class="form-check my-3 ms-3">
+                        <input class="form-check-input" name="AUT" type="checkbox" id="flexCheckDefault" {% if 'AUT' in checked %} checked {% endif %}/>
+                        <label class="form-check-label" for="flexCheckDefault">AUT - AUTOMOTIVE</label>
+                    </div>
+                    <div class="form-check my-3 ms-3">
+                        <input class="form-check-input" name="MOV" type="checkbox" id="flexCheckDefault" {% if 'MOV' in checked %} checked {% endif %}/>
+                        <label class="form-check-label" for="flexCheckDefault">MOV - MOVING</label>
+                    </div>
+                    <button type="submit" class="btn btn-secondary ms-3">Filter</button>
+                </form>
+            </div>
+	    <a href="{% url 'yardSite:sentReviews'%}">
+    	  	<button class="btn btn-primary" style="margin-bottom: 10px;">View a list of reviews you have created</button>
+    	    </a>
+
+        </div>
+    </div>
+{% endblock %}
