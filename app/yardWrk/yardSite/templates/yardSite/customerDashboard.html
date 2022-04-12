@@ -28,7 +28,7 @@
 
         {% if user.wallet <= 0 %}
             <br>
-            <b>To post a job you must have a postivie balance. Please add funds to your wallet.</b>
+            <b>To post a job you must have a postivie balance. Please add funds to your <a href="/accounts/profile">wallet.</a></b>
         {% else %}
             <a href="{% url 'yardSite:createJob' %}">
                 <button class="mt-2 btn btn-primary">Create Job</button>

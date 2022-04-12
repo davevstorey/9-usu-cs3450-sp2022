@@ -1,3 +1,4 @@
+import decimal
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.shortcuts import render
@@ -123,9 +124,9 @@ def finish_job(request, job_id):
     ownerUser = CustomUser.objects.get(is_superuser=True)
 
     # Calculate the different cuts
-    totalReward = int(completed_job.cash_reward)
-    ownerCut = totalReward * 0.1
-    workerCut = totalReward - ownerCut
+    totalReward = decimal.Decimal(completed_job.cash_reward)
+    ownerCut = decimal.Decimal(totalReward * decimal.Decimal(0.1))
+    workerCut = decimal.Decimal(totalReward - ownerCut)
 
     # Add or subtract cuts from the appropriate users
     workerUser.wallet += workerCut
