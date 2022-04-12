@@ -37,7 +37,7 @@ class Job(models.Model):
     job_type = models.ForeignKey('JobType', on_delete=models.CASCADE)
 
     # Decide on whether this should be an integer or float field
-    cash_reward = models.IntegerField()
+    cash_reward = models.DecimalField(max_digits=10, decimal_places=2)
 
     # Many to One Relation -- One Customer can have many jobs posted
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)

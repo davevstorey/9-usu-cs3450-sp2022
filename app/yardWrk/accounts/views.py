@@ -42,6 +42,17 @@ def login_view(request):
 
 @login_required(login_url='/accounts/login')
 def profile(request):
+    if request.method == 'POST':
+        user = request.user
+        if(request.POST.get("Add")):
+            sumToAdd = int(request.POST.get("Add"))
+            user.wallet += sumToAdd
+        elif(request.POST.get("Withdraw")):
+            sumToSub = int(request.POST.get("Withdraw"))
+            if (user.wallet >= sumToSub):
+                user.wallet -= sumToSub
+        user.save()
+
     return render(request, 'accounts/profile.html')
 
 @login_required(login_url='/accounts/login')

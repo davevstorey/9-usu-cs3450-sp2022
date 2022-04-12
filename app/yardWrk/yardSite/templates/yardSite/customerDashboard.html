@@ -5,22 +5,6 @@
 {% block content %}
 
     <div>
-        <h1 class="mt-2">Wallet</h1>
-        <p>${{ currentCustomer.user.wallet }}</p>
-        <form method="post" class="form-group">
-            {% csrf_token %}
-            $<input type="number" name="Add" value="0" min="0"></input>
-            <button type="submit" class="btn btn-success">Add Funds</button>
-        </form>
-        <br>
-        <form method="post" class="form-group">
-            {% csrf_token %}
-            $<input type="number" name="Withdraw" value="0" min="0"></input>
-            <button type="submit" class="btn btn-success">Withdraw Funds</button>
-        </form>
-    </div>
-
-    <div>
         <h1 class="mt-2">Pending Jobs</h1>
         <hr class="mt-0 mb-4">
         {% if pending_jobs %}
@@ -41,9 +25,16 @@
         {% else %}
             <p>You have no pending jobs.</p>
         {% endif %}
-        <a href="{% url 'yardSite:createJob' %}">
-            <button class="mt-2 btn btn-primary">Create Job</button>
-        </a>
+
+        {% if user.wallet <= 0 %}
+            <br>
+            <b>To post a job you must have a postivie balance. Please add funds to your <a href="/accounts/profile">wallet.</a></b>
+        {% else %}
+            <a href="{% url 'yardSite:createJob' %}">
+                <button class="mt-2 btn btn-primary">Create Job</button>
+            </a>
+        {% endif %}
+        
     </div>
 
     <div>

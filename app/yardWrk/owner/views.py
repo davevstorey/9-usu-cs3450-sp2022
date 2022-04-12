@@ -11,18 +11,6 @@ def owner_dashboard(request):
     job_types = JobType.objects.all()
     # Temporary Code for testing purposes (change when we have actual dashboard)
     user = request.user
-    # Adding/Removing Funds for Owner
-    if request.method == 'POST':
-        if(request.POST.get("Add")):
-            sumToAdd = int(request.POST.get("Add"))
-            user.wallet += sumToAdd
-        elif(request.POST.get("Withdraw")):
-            sumToSub = int(request.POST.get("Withdraw"))
-            if (user.wallet >= sumToSub):
-                user.wallet -= sumToSub
-        user.save()
-        return redirect('/owner/dashboard')
-
     context = {
         'ownerUser' : user,
         'types' : job_types,
