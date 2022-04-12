@@ -29,6 +29,11 @@ Clone repository
 Navigate to App
 
     cd 9-usu-cs3450-sp2022/app/yardWrk/
+    
+Pip Install Python Dependencies
+
+    pip install django-crispy-forms
+    pip install django-phonenumber-field[phonenumberslite]
 
 Initialize Database
 
@@ -43,6 +48,12 @@ Navigate to yardWrk
 
     http://127.0.0.1:8000/yardsite/
 
+## Accessing the owner account.
+
+For accessing the owner account, log in with username: owner , and password: password .
+
+Afterwords you have the ability to change account information from inside the app.
+
 ## System Testing Instructions
 
 For system testing, launch the app in the browser. You'll be able to navigate around the site and test it as any actor. You can go to the docs folder and find the SystemTesting document. That will have detailed tests and the requirements they fulfill.
@@ -54,3 +65,9 @@ You will also be able to check that the graphic and user interface parts of the 
 Sprint reports are found by navigating to the following directory.
 
     docs/Cs3450StandUps
+
+## Rubric.md
+
+For the rubric entailing how we finished each requirement on the assignment navigate into docs
+
+    docs/rubric.md

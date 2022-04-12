@@ -1,0 +1,38 @@
+{% extends "yardSite/base.html" %}
+
+{% block title %} Create Job Post {% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h1 class="mt-2">Job Details (For Admin)</h1>
+    <hr class="mt-0 mb-4">
+    <div class="card">
+        <div class="card-header">
+            {{ job.job_type }} - Posted by {{ job.name }} ({{job.customer.user }})
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">${{ job.cash_reward }}</h5>
+            <p class="card-text">{{ job.description }}</p>
+            <p class="card-text">Status - Not Yet Implemented</p>
+            {% if not job.available %}
+                <p class="card-text">Assigned to - {{ job.worker.user }}</p>
+            {% endif %}
+            <p class="card-text font-weight-bold">Expected Completion Date - {{ job.date_to_be_finished_by }}</p>
+            <h5 class="card-title">Address and Contact Info</h5>
+            <p class="card-text">Location - {{ job.customer.user.get_address }}</p>
+            <p class="card-text">Email - {{ job.customer.user.email }}</p>
+            <p class="card-text">Phone - {{ job.customer.user.phone }}</p>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col">
+            <a href="{% url 'owner:owner_del_job' job.id %}">
+                <button class="w-100 mt-2 btn btn-outline-primary">Remove</button>
+            </a>
+        </div>
+        <div class="col">
+            <button class="w-100 mt-2 btn btn-outline-primary" onclick="history.back()">Back</button>
+        </div>
+    </div>    
+{% endblock %}

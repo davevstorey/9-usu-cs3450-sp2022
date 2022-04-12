@@ -11,6 +11,6 @@
         {% csrf_token %}
         {{ form|crispy }}
         <button type="submit" class="mt-2 btn btn-outline-primary">Submit Changes</button>
-        <button class="mt-2 btn btn-outline-danger">Cancel</button>
+        <button class="mt-2 btn btn-outline-danger" onclick="history.back()">Cancel</button>
     </form>
 {% endblock %}

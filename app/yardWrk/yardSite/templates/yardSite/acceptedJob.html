@@ -3,21 +3,27 @@
 {% block title %} Job Accepted {% endblock %}
 
 {% block content %}
-    <div>
-        <h1 class="mt-2">Job Accepted!</h1>
-        <hr class="mt-0 mb-4">
-        <div class="card bg-light text-center">
-            <h5 class="card-header">{{job.job_type}}</h5>
-            <div class="card-body">
-                <p class="card-text">{{job.description}}</li>
-                <p class="card-text">Payment: ${{job.cash_reward}}</p>
-            </div>
-            <a href="{% url 'yardSite:ownedJobDetails' job.id %}">
-                <button class="btn btn-primary" style="margin-bottom: 10px;">Details</button>
-            </a>
+    <h1 class="mt-2">Job Accepted!</h1>
+    <hr class="mt-0 mb-4">
+    <div class="card">
+        <div class="card-header">
+            {{ job.job_type }} - Posted by {{ job.name }} ({{job.customer.user }})
         </div>
-        <a href="{% url 'yardSite:workerDashboard' %}">
-            <button class="btn btn-primary">Exit</button>
-        </a>
+        <div class="card-body">
+            <h5 class="card-title">${{ job.cash_reward }}</h5>
+            <p class="card-text">{{ job.description }}</p>
+            <p class="card-text">Status - Not Yet Implemented</p>
+            {% if not job.available %}
+                <p class="card-text">Assigned to - {{ job.worker.user }}</p>
+            {% endif %}
+            <p class="card-text font-weight-bold">Expected Completion Date - {{ job.date_to_be_finished_by }}</p>
+            <h5 class="card-title">Address and Contact Info</h5>
+            <p class="card-text">Location - {{ job.customer.user.get_address }}</p>
+            <p class="card-text">Email - {{ job.customer.user.email }}</p>
+            <p class="card-text">Phone - {{ job.customer.user.phone }}</p>
+        </div>
+    </div>
+    <div class="btn-group mt-2 w-100">
+        <a href="{% url 'yardSite:workerDashboard' %}" class="btn btn-outline-dark">Exit</a>
     </div>
 {% endblock %}

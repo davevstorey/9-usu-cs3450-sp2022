@@ -1,5 +1,7 @@
 from django import forms
 
+from accounts.models import CustomUser
+
 from .models import Job, Review
 
 
@@ -23,4 +25,3 @@ class ReviewPostForm(forms.ModelForm):
             "review_text",
             "redList_bool"
         ]
-

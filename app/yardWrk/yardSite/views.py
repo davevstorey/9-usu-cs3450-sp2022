@@ -1,3 +1,5 @@
+import decimal
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
@@ -11,23 +13,32 @@ from .forms import ReviewPostForm
 def empty(request):
     return redirect('/yardsite/home')
 
+@login_required(login_url='/accounts/login')
 def home(request):
-    qs = Job.objects.all().filter(available=True)
     filters = []
     checked = []
-    for type,name in Job.JOB_TYPES:
-        if request.GET.get(type) != 'on':
-            filters.append(type)
-        else:
-            checked.append(type)
-    if len(filters) > 0 and len(filters) < 7:
-        for filter in filters:
-            qs = qs.exclude(job_type=filter)
+    qs = Job.objects.all().filter(available=True)
+    job_types = JobType.objects.all()
 
-    return render(request, 'yardSite/home.html', { 'queryset': qs, 'checked': checked })
+    if request.GET.get('filter'):
+        for type in job_types:
+            if request.GET.get(type.name) != 'on':
+                filters.append(type)
+            else:
+                checked.append(type.name)
+        if len(checked) > 0:
+            for filter in filters:
+                qs = qs.exclude(job_type=filter)
+
+        if request.GET.get('zip') == 'on':
+            qs = qs.filter(zip_code=request.user.zip_code)
+            checked.append('zip')
+    
+    return render(request, 'yardSite/home.html', { 'queryset': qs, 'job_types': job_types, 'checked': checked })
 
 @login_required(login_url='/accounts/login')
 def CustomerDashboard(request):
+
     # Grab the customer that is tied to the logged in user
     currentUserCustomerProfile = request.user.customer
     review_list = Review.objects.filter(reviewee=request.user).exclude(isCustomer_bool = False)
@@ -41,9 +52,9 @@ def CustomerDashboard(request):
         'pending_jobs': pending_jobs,
         'progressing_jobs': progressing_jobs,
         'completed_jobs': completed_jobs,
-        'customerReviews': review_list
+        'customerReviews': review_list,
+        'currentCustomer' : currentUserCustomerProfile,
     }
-
     return render(request, 'yardSite/customerDashboard.html', context)
 
 @login_required(login_url='/accounts/login')
@@ -51,6 +62,8 @@ def WorkerDashboard(request):
     w_user = request.user
     w_name = w_user.get_full_name()
     worker = w_user.worker
+    wallet = w_user.wallet
+
     # Gets available jobs that weren't posted by this user
     review_list = Review.objects.filter(reviewee=w_user).exclude(isCustomer_bool = True)
     redList = Review.objects.filter(reviewee = w_user).filter(redList_bool = True)
@@ -70,9 +83,10 @@ def WorkerDashboard(request):
     context = {
         'name': w_name,
         'assigned': job_list,
-        'available': available_jobs,
+        #'available': available_jobs,
         'completed': completed_job_list,
-        'workerReviews': review_list
+        'workerReviews': review_list,
+        'wallet' : wallet,
     }
     return render(request, 'yardSite/workerDashboard.html', context)
 
@@ -118,9 +132,27 @@ def finish_job(request, job_id):
     completed_job = Job.objects.filter(id=job_id)[0]
 
     completed_job.completed = True
-    completed_job.save()
 
-    # Add logic for payment here
+    workerUser = CustomUser.objects.get(id=completed_job.worker.user.id)
+    customerUser = CustomUser.objects.get(id=completed_job.customer.user.id)
+    ownerUser = CustomUser.objects.get(is_superuser=True)
+
+    # Calculate the different cuts
+    totalReward = decimal.Decimal(completed_job.cash_reward)
+    ownerCut = decimal.Decimal(totalReward * decimal.Decimal(0.1))
+    workerCut = decimal.Decimal(totalReward - ownerCut)
+
+    # Add or subtract cuts from the appropriate users
+    workerUser.wallet += workerCut
+    customerUser.wallet -= totalReward
+    if(ownerUser):
+        ownerUser.wallet += ownerCut
+
+    # Save changes
+    workerUser.save()
+    customerUser.save()
+    ownerUser.save()
+    completed_job.save()
 
     context = {
         'job': completed_job
@@ -166,6 +198,7 @@ def editJob(request, job_id):
 
     return render(request, 'yardSite/editJob.html', context)
 
+@login_required(login_url='/accounts/login')
 def customer_create_review_post(request, job_id):
     requested_job = Job.objects.filter(id=job_id)[0]
 
@@ -188,6 +221,7 @@ def customer_create_review_post(request, job_id):
         form = ReviewPostForm(instance=requested_job)
     return render(request, 'yardsite/create-review-post.html', { 'form': form })
 
+@login_required(login_url='/accounts/login')
 def create_review_post(request, job_id):
     requested_job = Job.objects.filter(id=job_id)[0]
 
@@ -210,6 +244,7 @@ def create_review_post(request, job_id):
         form = ReviewPostForm(instance=requested_job)
     return render(request, 'yardsite/create-review-post.html', { 'form': form })
 
+@login_required(login_url='/accounts/login')
 def editReview(request, review_id):
     requested_review = Review.objects.filter(id=review_id)[0]
 
@@ -230,6 +265,7 @@ def editReview(request, review_id):
 
     return render(request, 'yardSite/editReview.html', context)
 
+@login_required(login_url='/accounts/login')
 def OwnedReviewDetails(request, review_id):
     requested_review = Review.objects.filter(id=review_id)[0]
 
