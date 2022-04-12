@@ -17,8 +17,26 @@ def empty(request):
 def home(request):
     filters = []
     checked = []
+    w_user = request.user
+    redList = Review.objects.filter(reviewee = w_user).filter(redList_bool = True)
+    returnRedList = Review.objects.filter(reviewer = w_user).filter(redList_bool = True)
     qs = Job.objects.all().filter(available=True)
     job_types = JobType.objects.all()
+
+    for i in redList:
+        wor = i.job.worker
+        qs = qs.exclude(worker = wor)
+
+        cus = i.job.customer
+        qs = qs.exclude(customer = cus)
+
+    for j in returnRedList:
+        wor = j.job.worker
+        qs = qs.exclude(worker = wor)
+
+        cus = j.job.customer
+        qs = qs.exclude(customer = cus)
+
 
     if request.GET.get('filter'):
         for type in job_types:
@@ -66,16 +84,7 @@ def WorkerDashboard(request):
 
     # Gets available jobs that weren't posted by this user
     review_list = Review.objects.filter(reviewee=w_user).exclude(isCustomer_bool = True)
-    redList = Review.objects.filter(reviewee = w_user).filter(redList_bool = True)
-    returnRedList = Review.objects.filter(reviewer = w_user).filter(redList_bool = True)
     available_jobs = Job.objects.filter(available=True).filter(completed=False).exclude(customer=w_user.customer)
-    for i in redList:
-        cus = i.job.customer
-        available_jobs = available_jobs.exclude(customer = cus)
-
-    for j in returnRedList:
-        wor = i.job.worker
-        available_jobs = available_jobs.exclude(worker = wor)
 
     
     job_list = Job.objects.filter(worker=worker).filter(completed=False)
@@ -83,7 +92,6 @@ def WorkerDashboard(request):
     context = {
         'name': w_name,
         'assigned': job_list,
-        #'available': available_jobs,
         'completed': completed_job_list,
         'workerReviews': review_list,
         'wallet' : wallet,
