@@ -34,6 +34,7 @@ Pip Install Python Dependencies
 
     pip install django-crispy-forms
     pip install django-phonenumber-field[phonenumberslite]
+    pip install lorem
 
 Initialize Database
 
