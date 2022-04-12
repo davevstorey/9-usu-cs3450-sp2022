@@ -2,7 +2,6 @@
 
 {% block title %} Worker Dashboard {% endblock %}
 
-
 {% block content %}
     <h1 class="mt-2 text-center">Worker Dashboard</h1>
     <div>
@@ -41,8 +40,13 @@
                                 <h5 class="card-title">${{ job.cash_reward }}</h5>
                                 <p class="card-text">{{ job.preview_description }}</p>
                             </div>
-			    <a href="{% url 'yardSite:ownedJobDetails' job.id %}"> <button class="btn btn-outline-primary w-100" href="">Details</button></a>
-		    	    <a href="{% url 'yardSite:customerCreateReview' job.id %}"><button class="btn btn-outline-primary w-100" href="">Leave a review</button></a>
+			    <a href="{% url 'yardSite:ownedJobDetails' job.id %}"><button class="btn btn-outline-primary w-100" href="">Details</button></a>
+			    {% for i in c2 %}
+			        {% if i == job %}
+		    	    	    <a href="{% url 'yardSite:createReview' job.id %}"><button class="btn btn-outline-primary w-100" href="">Leave a review</button></a>
+			        {% endif %}
+			    {% endfor %}
+
                         </div>
                     </div>
                 {% endfor %}
