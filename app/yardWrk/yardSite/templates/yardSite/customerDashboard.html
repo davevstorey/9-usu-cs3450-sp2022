@@ -25,9 +25,16 @@
         {% else %}
             <p>You have no pending jobs.</p>
         {% endif %}
-        <a href="{% url 'yardSite:createJob' %}">
-            <button class="mt-2 btn btn-primary">Create Job</button>
-        </a>
+
+        {% if user.wallet <= 0 %}
+            <br>
+            <b>To post a job you must have a postivie balance. Please add funds to your wallet.</b>
+        {% else %}
+            <a href="{% url 'yardSite:createJob' %}">
+                <button class="mt-2 btn btn-primary">Create Job</button>
+            </a>
+        {% endif %}
+        
     </div>
 
     <div>
