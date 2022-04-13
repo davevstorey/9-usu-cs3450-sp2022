@@ -1,3 +1,4 @@
+import decimal
 from django.shortcuts import render, redirect
 from django.apps import apps
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
@@ -45,10 +46,10 @@ def profile(request):
     if request.method == 'POST':
         user = request.user
         if request.POST.get("add"):
-            sumToAdd = int(request.POST.get("value"))
+            sumToAdd = decimal.Decimal(request.POST.get("value"))
             user.wallet += sumToAdd
         elif request.POST.get("withdraw"):
-            sumToSub = int(request.POST.get("value"))
+            sumToSub = decimal.Decimal(request.POST.get("value"))
             if (user.wallet >= sumToSub):
                 user.wallet -= sumToSub
             else:

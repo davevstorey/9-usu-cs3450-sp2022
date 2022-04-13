@@ -1,3 +1,4 @@
+import decimal
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 
@@ -71,10 +72,10 @@ def owner_edit_specific_account(request, user_id):
     specificUser = CustomUser.objects.get(id=user_id)
     if request.method == 'POST':
             if(request.POST.get("Add")):
-                sumToAdd = int(request.POST.get("Add"))
+                sumToAdd = decimal.Decimal(request.POST.get("value"))
                 specificUser.wallet += sumToAdd
             elif(request.POST.get("Withdraw")):
-                sumToSub = int(request.POST.get("Withdraw"))
+                sumToSub = decimal.Decimal(request.POST.get("value"))
                 if (specificUser.wallet >= sumToSub):
                     specificUser.wallet -= sumToSub
             specificUser.save()
