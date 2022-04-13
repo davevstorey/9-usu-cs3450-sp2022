@@ -3,11 +3,12 @@
 {% block title %} Customer Dashboard {% endblock %}
 
 {% block content %}
-    <h1 class="mt-2 text-center">Customer Dashboard</h1>
-    <div>
-        <h1 class="mt-2">Pending Jobs</h1>
+    <h1 class="mt-2 text-center" onclick="toggle('pending')">Customer Dashboard</h1>
+    <div class="container-fluid">
+        <h1 class="mt-2" onclick="toggle('pending')">Pending Jobs</h1>
         <hr class="mt-0 mb-2">
-        {% if pending_jobs %}
+        <div id="pending">
+            {% if pending_jobs %}
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-5">
                     {% for job in pending_jobs %}
                         <div class="col mb-2">
@@ -17,101 +18,106 @@
                                     <h5 class="card-title">${{ job.cash_reward }}</h5>
                                     <p class="card-text">{{ job.preview_description }}</p>
                                 </div>
-                                <a href="{% url 'yardSite:ownedJobDetails' job.id %}"><button class="btn btn-outline-primary w-100" href="">Details</button></a>
+                                <a href="{% url 'yardSite:ownedJobDetails' job.id %}"><button class="btn btn-outline-primary w-100">Details</button></a>
 
                             </div>
                         </div>
                     {% endfor %}
                 </div>
-        {% else %}
-            <p>You have no pending jobs.</p>
-        {% endif %}
+            {% else %}
+                <p>You have no pending jobs.</p>
+            {% endif %}
+        </div>
+        
         {% if user.wallet <= 0 %}
             <br>
             <b>To post a job you must have a positive balance. Please add funds to your <a href="/accounts/profile">wallet.</a></b>
         {% else %}
-            <a href="{% url 'yardSite:createJob' %}">
-                <button class="btn btn-primary">Create Job</button>
-            </a>
+            <a href="{% url 'yardSite:createJob' %}" class="btn btn-primary">Create Job</a>
         {% endif %}
     </div>
 
-    <div>
-        <h1 class="mt-2">In Progress</h1>
+    <div class="container-fluid"> 
+        <h1 class="mt-2" onclick="toggle('progressing')">In Progress</h1>
         <hr class="mt-0 mb-2">
-        {% if progressing_jobs %}
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-5">
-                {% for job in progressing_jobs %}
-                    <div class="col mb-2">
-                        <div class="card text-center">
-                            <div class="card-header">{{ job.job_type }}</div>
-                            <div class="card-body">
-                                <h5 class="card-title">${{ job.cash_reward }}</h5>
-                                <p class="card-text">{{ job.preview_description }}</p>
+        <div id="progressing">
+            {% if progressing_jobs %}
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-5">
+                    {% for job in progressing_jobs %}
+                        <div class="col mb-2">
+                            <div class="card text-center">
+                                <div class="card-header">{{ job.job_type }}</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">${{ job.cash_reward }}</h5>
+                                    <p class="card-text">{{ job.preview_description }}</p>
+                                </div>
+                                <a href="{% url 'yardSite:ownedJobDetails' job.id %}"><button class="btn btn-outline-primary w-100">Details</button></a>
                             </div>
-                            <a href="{% url 'yardSite:ownedJobDetails' job.id %}"><button class="btn btn-outline-primary w-100" href="">Details</button></a>
-
                         </div>
-                    </div>
-                {% endfor %}
-            </div>
-        {% else %}
-            <p>You have no progressing jobs.</p>
-        {% endif %}
-    </div>
-
-    <div>
-        <h1 class="mt-2">Completed</h1>
-        <hr class="mt-0 mb-2">
-        {% if completed_jobs %}
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-5">
-                {% for job in completed_jobs %}
-                    <div class="col mb-2">
-                        <div class="card text-center">
-                            <div class="card-header">{{ job.job_type }}</div>
-                            <div class="card-body">
-                                <h5 class="card-title">${{ job.cash_reward }}</h5>
-                                <p class="card-text">{{ job.preview_description }}</p>
-                            </div>
-                            <a href="{% url 'yardSite:ownedJobDetails' job.id %}"><button class="btn btn-outline-primary w-100" href="">Details</button></a>
-                        </div>
-		    	{% for i in c2 %}
-			    {% if i == job %}
-		   	    	<a href="{% url 'yardSite:customerCreateReview' job.id %}"><button class="btn btn-outline-primary w-100" href="">Leave a review</button></a>
-			    {% endif %}
-		    	{% endfor %}
-                    </div>
+                    {% endfor %}
                 </div>
-            {% endfor %}
+            {% else %}
+                <p>You have no progressing jobs.</p>
+            {% endif %}
         </div>
-        {% else %}
-            <p>You have no completed jobs.</p>
-        {% endif %}
+        
     </div>
 
-    <div>
-        <h1 class="mt-2">Reviews received by workers</h1>
+    <div class="container-fluid">
+        <h1 class="mt-2" onclick="toggle('completed')">Completed</h1>
         <hr class="mt-0 mb-2">
-        {% if customerReviews %}
-            <div class="card-columns">
-                {% for review in customerReviews %}
-                    <div class="card bg-light text-center">
-                        <h5 class="card-header">{{ review.job.job_type}}</h5>
-                        <div class="card-body">
-                            <p class="card-text">{{ review.job.description}}</li>
-                            <p class="card-text">received a {{ review.rating_num }} star rating.</p>
-			    <p class="card-text"> {{ review.review_text }}</p>
+        <div id="completed">
+            {% if completed_jobs %}
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-5">
+                    {% for job in completed_jobs %}
+                        <div class="col mb-2">
+                            <div class="card text-center">
+                                <div class="card-header">{{ job.job_type }}</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">${{ job.cash_reward }}</h5>
+                                    <p class="card-text">{{ job.preview_description }}</p>
+                                </div>
+                                <a href="{% url 'yardSite:ownedJobDetails' job.id %}"><button class="btn btn-outline-primary w-100" href="">Details</button></a>
+                            </div>
+                    {% for i in c2 %}
+                    {% if i == job %}
+                        <a href="{% url 'yardSite:customerCreateReview' job.id %}"><button class="btn btn-outline-primary w-100">Leave a review</button></a>
+                    {% endif %}
+                    {% endfor %}
                         </div>
-			<a href="{% url 'yardSite:ownedReviewDetails' review.id %}">
-                            <button class="btn btn-primary" style="margin-bottom: 10px;">Details</button>
-                        </a>
-
                     </div>
                 {% endfor %}
             </div>
-        {% else %}
-            <p>No received reviews</p>
-        {% endif %}
+            {% else %}
+                <p>You have no completed jobs.</p>
+            {% endif %}
+        </div>
     </div>
 
+    <div class="container-fluid">
+        <h1 class="mt-2" onclick="toggle('reviews')">Reviews received by workers</h1>
+        <hr class="mt-0 mb-2">
+        <div id="reviews">
+            {% if customerReviews %}
+                <div class="card-columns">
+                    {% for review in customerReviews %}
+                        <div class="card bg-light text-center">
+                            <h5 class="card-header">{{ review.job.job_type}}</h5>
+                            <div class="card-body">
+                                <p class="card-text">{{ review.job.description}}</li>
+                                <p class="card-text">received a {{ review.rating_num }} star rating.</p>
+                    <p class="card-text"> {{ review.review_text }}</p>
+                            </div>
+                <a href="{% url 'yardSite:ownedReviewDetails' review.id %}">
+                                <button class="btn btn-primary" style="margin-bottom: 10px;">Details</button>
+                            </a>
+
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>No received reviews</p>
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}
