@@ -125,25 +125,34 @@ Event Flow:
     1. The owner clicks on one to delete
     2. The updates reflect job options minus deleted choices
 
-## 6 \- Owner modifies accounts
+## 6 \- Owner edits user account balances
 
-![Diagram 6](useCaseDiagramsSrc/OwnerModifiesAccounts.png)
+![Diagram 6](useCaseDiagramsSrc/OwnerEditsUserAccountBalances.png)
 
 Participating Actor/s: Owner
 
 Entry Conditions:
 
-- Owner would like to or needs to modify an account
+- Owner accesses dashboard for editing the balances of user accounts
 
 Exit Conditions:
 
-- Owner has finished modifying the account
+- Owner adds funds
+- Owner withdraws funds
+- Owner exits without doing anything
 
 Event Flow:
 
-1. Owner needs to modify an account
-2. Create, delete, edit type, and/or modify balance of an account
-3. Submit Modifications
+1. Owner accesses dashboard for editing the balances of user accounts (Located on owner dashboard). This displays a list of all users and shows their current account balance
+2. Owner chooses an account to edit
+3. Owner accesses the chosen user's digital wallet. The wallet displays their current balance and allows the owner to enter a value to add or withdraw funds
+4. The owner chooses whether to add or withdraw funds from the chosen user's wallet or to exit without doing anything
+5. If add:
+    1. Funds are added to the user's digital wallet, unless the value provided by the user was invalid
+6. If withdraw:
+    1. Funds are withdrawn from the user's digital wallet, unless the value provided by the user was invalid
+7. If exit:
+    1. The user's digital wallet balance is unchanged.
 
 ## 7 \- User creates an account
 
