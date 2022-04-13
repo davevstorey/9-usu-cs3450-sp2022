@@ -51,33 +51,29 @@ Event Flow:
 7. A notification is sent to the customer, confirming the worker
 8. The workers Dashboard is updated to display the job
 
-## 3 \- Customer reviews worker to accept/decline job
+## 3 \- User changes their account balance (Money)
 
-![Diagram 3](useCaseDiagramsSrc/CustomerReviewsWorkerAcceptsDeclines.png)
+![Diagram 3](useCaseDiagramsSrc/UserChangesAccountBalance.png)
 
-Participating actor/s: Worker
+Participating actor/s: User
 
 Entry Conditions:
 
-- A worker has accepted the customer's job posting
+- User Accesses Wallet
 
 Exit conditions:
 
-- The customer chooses to decline the worker
-- The customer chooses to accept the worker
+- User adds funds
+- User withdraws funds
 
 Event Flow:
 
-1. A notification is presented to the customer
-2. The workers' previous reviews and name are presented to the customer
-3. The customer chooses to accept or decline the worker
-4. If declining:
-    1. The workers dashboard is updated to remove the job
-6. If accepting:
-    1. The worker is notified of the job being accepted
-    2. The worker is given contact information of the customer
-    3. Both dashboards are updated to reflect job acceptance
-    4. The job is removed from the job listing
+1. User accesses their digital wallet (Found on their account page). The wallet displays their current balance and allows them to enter a value to add or withdraw funds
+2. The user chooses whether to add or withdraw funds from their wallet
+3. If add:
+    1. Funds are added to the user's digital wallet, unless the value provided by the user was invalid
+4. If withdraw:
+    1. Funds are withdrawn from the user's digital wallet, unless the value provided by the user was invalid
 
 ## 4 \- Worker submits job completion.
 
