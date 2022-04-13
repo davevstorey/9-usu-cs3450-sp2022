@@ -132,6 +132,16 @@ def OwnedJobDetails(request, job_id):
     return render(request, 'yardSite/ownedJobDetails.html', context)
 
 @login_required(login_url='/accounts/login')
+def delete_job(request, job_id):
+    requested_job = Job.objects.filter(id=job_id)[0]
+
+    if request.method == 'POST':
+        if request.POST.get("delete"): requested_job.delete()
+        return redirect('/yardsite/customer')
+    
+    return render(request, 'yardSite/delete-job.html', { 'job': requested_job })
+
+@login_required(login_url='/accounts/login')
 def accepted_job(request, job_id):
     accepted_job = Job.objects.filter(id=job_id)[0]
     currentUserWorkerProfile = request.user.worker

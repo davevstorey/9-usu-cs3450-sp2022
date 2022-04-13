@@ -1,0 +1,33 @@
+{% extends "yardSite/base.html" %}
+
+{% block title %} Delete Job {% endblock %}
+
+{% block content %}
+    <h1 class="mt-2">Are you sure?</h1>
+    <hr class="mt-0 mb-2">
+    <div class="card fs-5 mb-2">
+        <div class="card-header">
+            {{ job.job_type }} - Posted by {{ job.name }} ({{job.customer.user }})
+        </div>
+        <div class="card-body">
+            <h5 class="card-title fs-3">${{ job.cash_reward }}</h5>
+            <p class="card-text">{{ job.description }}</p>
+            <p class="card-text">Status - Not Yet Implemented</p>
+            {% if not job.available %}
+                <p class="card-text">Assigned to - {{ job.worker.user }}</p>
+            {% endif %}
+            <p class="card-text font-weight-bold">Expected Completion Date - {{ job.date_to_be_finished_by }}</p>
+            <h5 class="card-title fs-3">Address and Contact Info</h5>
+            <p class="card-text">Location - {{ job.customer.user.get_address }}</p>
+            <p class="card-text">Email - {{ job.customer.user.email }}</p>
+            <p class="card-text">Phone - {{ job.customer.user.phone }}</p>
+        </div>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="btn-group w-100">
+            <input type="submit" class="btn btn-dark fs-5" name="cancel" value="Cancel">
+            <input type="submit" class="btn btn-danger fs-5" name="delete" value="Delete Job Post">
+        </div>
+    </form>
+{% endblock %}
