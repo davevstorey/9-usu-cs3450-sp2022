@@ -17,5 +17,6 @@ urlpatterns = [
     path('sentReviews', views.SentReviews, name="sentReviews"),
     path('<int:review_id>/edit_review', views.editReview, name="editReview"),
     path('<int:review_id>/sentReviewDetails', views.SentReviewDetails, name="sentReviewDetails"),
-    path('<int:review_id>/review', views.OwnedReviewDetails, name="ownedReviewDetails")
+    path('<int:review_id>/review', views.OwnedReviewDetails, name="ownedReviewDetails"),
+    path('customer/delete-job/<int:job_id>', views.delete_job, name="delete_job")
 ]
