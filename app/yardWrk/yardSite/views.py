@@ -113,9 +113,10 @@ def WorkerDashboard(request):
 def OwnedJobDetails(request, job_id):
     requested_job = Job.objects.filter(id=job_id)[0]
     currentUserCustomerProfile = request.user.customer
+    currentUserWorkerProfile = request.user.worker
 
     can_assign_to_self = True
-    if requested_job.customer == currentUserCustomerProfile:
+    if requested_job.customer == currentUserCustomerProfile or requested_job.worker == currentUserWorkerProfile:
         can_assign_to_self = False
     
     yourReviews =  Review.objects.filter(job = requested_job).filter(reviewer = request.user)
@@ -146,7 +147,7 @@ def accepted_job(request, job_id):
     accepted_job = Job.objects.filter(id=job_id)[0]
     currentUserWorkerProfile = request.user.worker
 
-    accepted_job.available = False
+    accepted_job.pending = True
     accepted_job.worker = currentUserWorkerProfile
     accepted_job.save()
 
@@ -322,3 +323,19 @@ def SentReviewDetails(request, review_id):
     }
 
     return render(request, 'yardSite/sentReviewDetails.html', context)
+
+@login_required(login_url='/accounts/login')
+def workerPendingJobs(request):
+    pendingJobs = Job.objects.filter(pending=True).filter(worker=request.user.worker)
+    context = {
+        'pendingJobs' : pendingJobs
+    }
+    return render(request, 'yardSite/workerPendingJobs.html', context)
+
+@login_required(login_url='/accounts/login')
+def customerPendingJobs(request):
+    pendingJobs = Job.objects.filter(pending=True).filter(customer=request.user.customer)
+    context = {
+        'pendingJobs' : pendingJobs
+    }
+    return render(request, 'yardSite/customerPendingJobs.html', context)

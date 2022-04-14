@@ -1,0 +1,12 @@
+{%for job in pendingJobs%}
+    <div class="col mb-2">
+        <div class="card text-center">
+            <div class="card-header">{{ job.job_type }}</div>
+            <div class="card-body">
+                <h5 class="card-title">${{ job.cash_reward }}</h5>
+                <p class="card-text">{{ job.preview_description }}</p>
+            </div>
+            <a href="{% url 'yardSite:ownedJobDetails' job.id %}"><button class="btn btn-outline-primary w-100" href="">Details</button></a>
+        </div>
+    </div>
+{% endfor %}
