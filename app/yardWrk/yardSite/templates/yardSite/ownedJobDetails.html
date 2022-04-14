@@ -21,7 +21,9 @@
             <p class="card-text">Location - {{ job.customer.user.get_address }}</p>
             <p class="card-text">Email - {{ job.customer.user.email }}</p>
             <p class="card-text">Phone - {{ job.customer.user.phone }}</p>
-            <a href="{% url 'yardSite:delete_job' job.id %}" class="btn btn-outline-danger fs-5 float-end">Delete</a>
+            {% if job.customer.user == user %}
+                <a href="{% url 'yardSite:delete_job' job.id %}" class="btn btn-outline-danger fs-5 float-end">Delete</a>
+            {% endif %}
         </div>
     </div>
     <div class="btn-group mt-2 w-100">
