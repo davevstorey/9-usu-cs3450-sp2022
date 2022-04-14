@@ -6,7 +6,7 @@ The goal of this project is to create a website that allows customers to hire in
 
 ## Team Organization
 
-- Project Manager: Quinn Ormond (We plan on rotating the position)
+- Project Manager: Quinn Ormond
 - Designers and Developers: David Storey, Ian Adams, and Jake Epperson
 
 ## Overall Software Development Process (provided by the instructor)
