@@ -14,7 +14,6 @@
         <div class="card-body">
             <h5 class="card-title">${{ job.cash_reward }}</h5>
             <p class="card-text">{{ job.description }}</p>
-            <p class="card-text">Status - Not Yet Implemented</p>
             {% if not job.available %}
                 <p class="card-text">Assigned to - {{ job.worker.user }}</p>
             {% endif %}
