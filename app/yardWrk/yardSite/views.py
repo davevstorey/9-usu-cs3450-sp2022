@@ -11,7 +11,7 @@ from .forms import ReviewPostForm
 # Responsible for creating the view a user sees when navigating to their customer page.
 
 def empty(request):
-    return redirect('/yardsite/home')
+    return redirect('/yardWrk/home')
 
 @login_required(login_url='/accounts/login')
 def home(request):
@@ -137,7 +137,7 @@ def delete_job(request, job_id):
 
     if request.method == 'POST':
         if request.POST.get("delete"): requested_job.delete()
-        return redirect('/yardsite/customer')
+        return redirect('/yardWrk/customer')
     
     return render(request, 'yardSite/delete-job.html', { 'job': requested_job })
 
@@ -199,7 +199,7 @@ def create_job_post(request):
             instance.zip_code = request.user.zip_code
             instance.customer = request.user.customer
             instance.save()
-            return redirect('/yardsite/customer')
+            return redirect('/yardWrk/customer')
         else: 
             print(form.errors)
     else:
@@ -214,7 +214,7 @@ def editJob(request, job_id):
         form = JobPostForm(request.POST, instance=requested_job)
         if form.is_valid():
             form.save()
-            return redirect('/yardsite/customer')
+            return redirect('/yardWrk/customer')
         else: 
             print(form.errors)
     else:
@@ -243,7 +243,7 @@ def customer_create_review_post(request, job_id):
             instance.isCustomer_bool = False
             instance.reviewer = requested_job.customer.user
             instance.save()
-            return redirect('/yardsite/home')
+            return redirect('/yardWrk/home')
         else:
             print(form.errors)
     else: 
@@ -266,7 +266,7 @@ def create_review_post(request, job_id):
             instance.reviewer = requested_job.worker.user
             instance.isCustomer_bool = True
             instance.save()
-            return redirect('/yardsite/home')
+            return redirect('/yardWrk/home')
         else:
             print(form.errors)
     else: 
@@ -281,7 +281,7 @@ def editReview(request, review_id):
         form = ReviewPostForm(request.POST, instance=requested_review)
         if form.is_valid():
             form.save()
-            return redirect('/yardsite/sentReviews')
+            return redirect('/yardWrk/sentReviews')
         else:
             print(form.errors)
     else:
