@@ -3,9 +3,14 @@
 {% block title %} Customer Dashboard {% endblock %}
 
 {% block content %}
-    <h1 class="mt-2 text-center" onclick="toggle('pending')">Customer Dashboard</h1>
+    <h1 class="mt-2 text-center">Customer Dashboard</h1>
     <div class="container-fluid">
-        <h1 class="mt-2" onclick="toggle('pending')">Pending Jobs</h1>
+        <h1 class="mt-2" onclick="toggle('pending')">
+            Pending Jobs
+            {% if user.wallet >= 0 %}
+                <a href="{% url 'yardSite:createJob' %}" class="float-end btn btn-outline-primary">Create Job Post</a>
+            {% endif %}
+        </h1>
         <hr class="mt-0 mb-2">
         <div id="pending">
             {% if pending_jobs %}
@@ -32,8 +37,6 @@
         {% if user.wallet <= 0 %}
             <br>
             <b>To post a job you must have a positive balance. Please add funds to your <a href="/accounts/profile">wallet.</a></b>
-        {% else %}
-            <a href="{% url 'yardSite:createJob' %}" class="btn btn-primary">Create Job</a>
         {% endif %}
     </div>
 

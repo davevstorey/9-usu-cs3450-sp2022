@@ -16,12 +16,11 @@
                 <button class="btn btn-primary" style="margin-bottom: 10px;">Details</button>
             </a>
         </div>
-	<a href="{% url 'yardSite:createReview' job.id %}">
-            <button class="btn btn-primary">Leave a review</button>
-        </a>
 
-        <a href="{% url 'yardSite:workerDashboard' %}">
-            <button class="btn btn-primary">Exit</button>
-        </a>
+
+        <div class="mt-2 btn-group w-100">
+	        <a href="{% url 'yardSite:createReview' job.id %}" class="btn btn-outline-primary">Leave a review</a>
+            <a href="{% url 'yardSite:workerDashboard' %}" class="btn btn-outline-dark">Exit</a>
+        </div>
     </div>
 {% endblock %}
