@@ -80,7 +80,7 @@ class Review(models.Model):
     )
 
 
-    redList_bool = models.BooleanField()
+    redList_bool = models.BooleanField(verbose_name="redlist")
     reviewerName_text = models.CharField(max_length = 40)
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
     reviewee = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='reviewee', default='110')
