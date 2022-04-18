@@ -21,3 +21,5 @@
 - [x] Updated documentation (README.md).
 - Justification: Build instructions needed to be changed, so they were. Testing needed to be updated, and the repo to the reports were added.
 
+- [x] Powerpoint for Sprint4 (README.md).
+- Justification: Go to docs/YardwrkPowerpoint to view the entire powerpoint pdf.
