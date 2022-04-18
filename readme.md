@@ -47,7 +47,7 @@ Start server
 
 Navigate to yardWrk
 
-    http://127.0.0.1:8000/yardsite/
+    http://127.0.0.1:8000/yardWrk/
 
 ## Accessing the owner account.
 
