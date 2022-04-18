@@ -76,8 +76,7 @@ want to do it themself.
 &emsp;&emsp;2.4.7 User will be able to edit job information\
 &emsp;&emsp;2.4.8 User will be able to view a list of jobs they created\
 3. Owner Profile Features\
-&emsp;3.1 Owner will be able to change profile types\
-&emsp;3.2 Owner will be able to create/delete accounts\
+&emsp;3.1 Owner will be able to change between profile types\
 &emsp;3.3 Owner will be able to edit transactions\
 &emsp;&emsp;3.3.1 Take money out of a worker’s account\
 &emsp;&emsp;3.3.2 Take money out of a customer’s account\
