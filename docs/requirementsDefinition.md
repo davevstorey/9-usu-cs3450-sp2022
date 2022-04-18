@@ -76,15 +76,14 @@ want to do it themself.
 &emsp;&emsp;2.4.7 User will be able to edit job information\
 &emsp;&emsp;2.4.8 User will be able to view a list of jobs they created\
 3. Owner Profile Features\
-&emsp;3.1 Owner will be able to change profile types\
-&emsp;3.2 Owner will be able to create/delete accounts\
-&emsp;3.3 Owner will be able to edit transactions\
-&emsp;&emsp;3.3.1 Take money out of a worker’s account\
-&emsp;&emsp;3.3.2 Take money out of a customer’s account\
-&emsp;&emsp;3.3.3 Put money into a worker’s account\
-&emsp;&emsp;3.3.4 Put money into a customer’s account\
-&emsp;3.4 Owner will be able to escalate other users to owner status.\
-&emsp;3.5 Owner will be able to create new job/task descriptions (i.e. washing windows, etc.)\
+&emsp;3.1 Owner will be able to change between profile types\
+&emsp;3.2 Owner will be able to edit transactions\
+&emsp;&emsp;3.2.1 Take money out of a worker’s account\
+&emsp;&emsp;3.2.2 Take money out of a customer’s account\
+&emsp;&emsp;3.2.3 Put money into a worker’s account\
+&emsp;&emsp;3.2.4 Put money into a customer’s account\
+&emsp;3.3 Owner will be able to escalate other users to owner status.\
+&emsp;3.4 Owner will be able to create new job/task descriptions (i.e. washing windows, etc.)\
 
 ## Non-functional Requirements
 
